@@ -4,10 +4,14 @@ import ClientForm from '../../components/Client';
 import api from '../../services/api';
 import LinguaForm from '../../components/Lingua';
 import Geral from '../../components/Geral';
-import { Client, IAuscultação,  IFormulario, IGeral, ILingua } from '../../models';
+import { Client, IAlgias, IAuscultação,  IFormulario, IGeral, ILingua, ITorax } from '../../models';
 import Interrogatorio from '../../components/Interrogatório';
 import Auscultacao from '../../components/Auscultação';
+import Torax from '../../components/Torax';
+import Algias from '../../components/Algias';
 
+// menstruação mostrar so qd for mulher selecionado
+// tato não obrigatorio
 
 const Formulario: React.FC =()=>{
 
@@ -38,6 +42,21 @@ const Formulario: React.FC =()=>{
     Labios_input: "",
     Pele: "",
   });
+  const [torax, setTorax] = useState<ITorax>({
+    Torax: "",
+    Dores_cabeca:"" ,
+    Obs_torax: "",
+    Obs_dorescabe: "",
+    Escala_analogdor:"" ,
+  });
+  const [algias, setAlgias] = useState<IAlgias>({
+    Coluna: 0,
+    Obs_coluna: '',
+    dores_musculares: '',
+    dores_articulares: '',
+    abdome: [],
+    obs_abdome: '',
+  });
 
   const [auscultacao, setAuscultacao] = useState<IAuscultação>({
     Fala: 0,
@@ -62,6 +81,7 @@ const Formulario: React.FC =()=>{
     Disfuncoes_gastrointestinais: 0,
     Obs_disfuncoes: "",
     Excrecoes: 0,
+    Excrecoes2: 0,
     Obs_excrecoes: "",
     Menstruacao: 0,
     Obs_mentruacao: "",
@@ -72,7 +92,11 @@ const Formulario: React.FC =()=>{
     Boca_gosto: 0,
     Obs_bocagosot: "",
     idCid: 0,
-    
+    Torax: "",
+    Dores_cabeca:"" ,
+    Obs_torax: "",
+    Obs_dorescabe: "",
+    Escala_analogdor:"" ,
   });
 
 
@@ -140,6 +164,7 @@ const Formulario: React.FC =()=>{
               Disfuncoes_gastrointestinais: interroga.Disfuncoes_gastrointestinais,
               Obs_disfuncoes: interroga.Obs_disfuncoes,
               Excrecoes: interroga.Excrecoes,
+              Excrecoes2: interroga.Excrecoes2,
               Obs_excrecoes: interroga.Obs_excrecoes,
               Menstruacao: interroga.Menstruacao,
               Obs_mentruacao: interroga.Obs_mentruacao,
@@ -150,6 +175,11 @@ const Formulario: React.FC =()=>{
               Boca_gosto: interroga.Boca_gosto,
               Obs_bocagosot: interroga.Obs_bocagosot,
               idCid: client.idCid,
+              Torax: torax.Torax,
+              Dores_cabeca: torax.Torax,
+              Obs_torax: torax.Torax,
+              Obs_dorescabe: torax.Torax,
+              Escala_analogdor: torax.Torax,
               // Coluna: "String",
               // Dores_musculares: "String",
               // Dores_articulares: "String",
@@ -185,6 +215,8 @@ const Formulario: React.FC =()=>{
               <Geral datageral={setGeral}/>
               <Auscultacao dataAuscultacao={setAuscultacao}/>
               <Interrogatorio dataformulario={setInterroga}/>
+              <Algias dataAlgias={setAlgias}/>
+              <Torax datatorax={setTorax}/>
               <View style={styles.button}>
                 <Button
                     title="Enviar"

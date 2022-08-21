@@ -1,3 +1,4 @@
+import { TextInputProps } from "react-native"
 
 export interface Client{
         nome: String,
@@ -36,9 +37,9 @@ export interface IAuscultação{
 
 export interface IFormulario{
         lingua?: Number,
-        obs_lingua?: String, // add
+        obs_lingua?: String, 
         cor_pele?: Number,
-        cabeecabelos_input?: String, //add
+        cabeecabelos_input?: String, 
         formpostura?: Number
         Nariz?: String,
         Orelhas?: String,
@@ -64,6 +65,7 @@ export interface IFormulario{
         Disfuncoes_gastrointestinais: Number,
         Obs_disfuncoes: String,
         Excrecoes: Number,
+        Excrecoes2: Number,
         Obs_excrecoes: String,
         Menstruacao: Number,
         Obs_mentruacao: String,
@@ -74,19 +76,51 @@ export interface IFormulario{
         Boca_gosto: Number,
         Obs_bocagosot: String,
         idCid: Number,
+        Torax: String,
+        Dores_cabeca: String,
+        Obs_torax: String,
+        Obs_dorescabe: String,
+        Escala_analogdor: String
 } 
+export interface IBasicArray{
+        id:Number,
+        name: String,
+        value:String,
+        checked: Boolean
+    }
+export interface IAlgias{
+        Coluna: Number,
+        Obs_coluna: String,
+        dores_musculares: String,
+        dores_articulares: String,
+        abdome: IBasicArray[],
+        obs_abdome: String,
+}
+export interface ITorax{
+        Torax: String,
+        Dores_cabeca: String,
+        Obs_torax: String,
+        Obs_dorescabe: String,
+        Escala_analogdor: String
+}
+export interface IFinal{
+        Neuromuscular: String,
+        Diagnostico_teurapeutico: String, 
+        Objetivo: String,
+        Medicamento: String,
+        Patalogia: String,
+        Condutas: String,
+}
+export interface IDgclinicos{
+        diagnostico_clinico: String,
+        queixa_prin: String,
+}
 
-        // Coluna: String,
-        // Dores_musculares: String,
-        // Dores_articulares: String,
-        // Abdome: String,
-        // Dores_cabeca: String,
-        // Torax: String,
-        // Escala_analogdor: String,
-        // Diagnostico_teurapeutico:String,
-        // Condutas: String,
-        // Obs_casa: String ,
-        // Obs_mentruacao: String,
-        // Obs_bocagosot: String,
-        // createdAt: Date | null,
-        // updatedAt: Date | null,
+export interface InputProps extends TextInputProps {
+        mask: "cpf" | "phone" | "email";
+        inputMaskChange: any;
+}
+
+        //     idPalpacao: 
+        //     geralformpostura: 
+                

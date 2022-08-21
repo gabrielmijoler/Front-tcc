@@ -143,7 +143,6 @@ const Interrogatorio: React.FC<Props> = ({dataformulario}) => {
         tato,
         bocagosto,
         bocgostoobs,
-        
     ])
 
     return (

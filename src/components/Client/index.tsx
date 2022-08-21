@@ -1,4 +1,4 @@
-import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, Alert, Button } from 'react-native';
+import { View, Text, StyleSheet, TextInput} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -6,6 +6,8 @@ import { Client } from '../../models';
 import DatePicker from 'react-native-datepicker';
 import Picker from 'react-native-picker-select';
 import RNPickerSelect from 'react-native-picker-select'
+import Input from '../Input';
+
 
 const styles = StyleSheet.create({
     input: {
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
 });
 interface Props{
     dataclient: (data: Client)=> void
-} 
+}
 
 
 const ClientForm: React.FC<Props> = ({dataclient}) => {
@@ -129,29 +131,35 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
                 value={name}
                 placeholder="Gabriel Silva"
             />
-            <Text style={styles.text}>Endereço(Rua, Bairro)</Text>
+            <Text style={styles.text}>Email</Text>
             <TextInput
                 style={styles.input}
                 onChangeText={setEmails}
                 value={emails}
-                placeholder="Endereço"
+                keyboardType="email-address"
+                placeholder="teste@hotmail.com"
             />
-            <Text style={styles.text}>Número da casa</Text>
-            <TextInput
+            <Text style={styles.text}>CPF</Text>
+            <Input
                 style={styles.input}
                 onChangeText={setCpf}
                 value={cpf}
-                placeholder="Nº"
-                keyboardType="numeric"
+                keyboardType="phone-pad"
+                placeholder="000.000.000-00"
+                inputMaskChange={(text: string) => setCpf(text)} 
+                mask={'cpf'} 
+                maxLength={14}
             />
             <Text style={styles.text}>Telefone</Text>
-            <TextInput
+            <Input
                 style={styles.input}
-                onChangeText={setPhone}
                 value={phone}
-                placeholder="99999-9999"
-                keyboardType="numeric"
-            />
+                placeholder="(16) 99999-9999"
+                keyboardType="phone-pad"
+                maxLength={14}
+                inputMaskChange={(text: string) => setPhone(text)} 
+                mask={'phone'} 
+                />
             {/* <DatePicker
                 style={{width: 200}}
                 date={data}
