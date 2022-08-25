@@ -1,13 +1,12 @@
 import { View, Text, StyleSheet, TextInput} from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import api from '../../services/api';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Client } from '../../models';
 import DatePicker from 'react-native-datepicker';
 import Picker from 'react-native-picker-select';
 import RNPickerSelect from 'react-native-picker-select'
-import Input from '../Input';
-
+import { TextInputMask } from 'react-native-masked-text'
 
 const styles = StyleSheet.create({
     input: {
@@ -58,10 +57,13 @@ interface Props{
 
 const ClientForm: React.FC<Props> = ({dataclient}) => {
     const [name, setName] = useState("");
-    const [emails, setEmails] = useState("");
+    const [email, setEmail] = useState("");
+    const [errorEmail, setErrorEmail] = useState(null)
     const [sexo, setSexo] = useState("");
     const [cpf, setCpf] = useState("");
-    const [phone, setPhone] = useState("");
+    const [errorCpf, setErrorCpf] = useState(null);
+    const [telefone, setTelefone] = useState("");
+    const [errorTelefone, setErrorTelefone] = useState(null)
     const [data, setData] = useState("");
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [cvstatus, setCvstatus] = useState("");
@@ -73,7 +75,30 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
     const [sexox, setSexox] = useState(['MASCULINO', 'FEMININO', 'OUTROS']);
     const [selecionadosexo, setSelecionadosexo] = useState([]);
     const pickerRef = React.useRef<RNPickerSelect | null>()
-    
+
+    let ref_cpf = createRef<any>();
+    let telefoneField = null
+
+    const validar = () => {
+        let error = false
+        setErrorEmail(null)
+        setErrorCpf(null)
+        
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        if (!re.test((email).toLowerCase())){
+          setErrorEmail("Preencha seu e-mail corretamente")
+          error = true
+        }
+        if (!ref_cpf.current()){
+          setErrorCpf("Preencha seu CPF corretamente")
+          error = true  
+        }
+        if (telefone == null){
+          setErrorTelefone("Preencha seu telefone corretamente")
+          error = true
+        }
+        return !error
+      }
     useEffect(() => {
         const getcid = async () => {
             try {
@@ -97,11 +122,11 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
     useEffect(()=>{
         dataclient({
             nome:name,
-            email: emails,
+            email: email,
             sexo: sexo,
             cpf: cpf,
             profissao: prof,
-            telefone: phone,
+            telefone: telefone,
             religiao: relig,
             estadocivil: cvstatus,
             datanascimento: data,
@@ -111,10 +136,10 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
         }as Client)
     }, [
         sexo,
-        emails,
+        email,
         name,
         cpf,
-        phone,
+        telefone,
         data,
         cvstatus,
         prof,
@@ -129,37 +154,57 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
                 style={styles.input}
                 onChangeText={setName}
                 value={name}
-                placeholder="Gabriel Silva"
+                placeholder="Nome Completo"
             />
             <Text style={styles.text}>Email</Text>
             <TextInput
                 style={styles.input}
-                onChangeText={setEmails}
-                value={emails}
+                onChangeText={value => {
+                    setEmail(value)
+                    setErrorEmail(null)
+                    }
+                }
+                value={email}
                 keyboardType="email-address"
                 placeholder="teste@hotmail.com"
             />
             <Text style={styles.text}>CPF</Text>
-            <Input
-                style={styles.input}
-                onChangeText={setCpf}
+            <TextInputMask 
+                placeholder="CPF"
+                type={'cpf'}
                 value={cpf}
-                keyboardType="phone-pad"
-                placeholder="000.000.000-00"
-                inputMaskChange={(text: string) => setCpf(text)} 
-                mask={'cpf'} 
-                maxLength={14}
-            />
-            <Text style={styles.text}>Telefone</Text>
-            <Input
+                onChangeText={value => {
+                    setCpf(value)
+                    setErrorCpf(null)
+                    }
+                }
                 style={styles.input}
-                value={phone}
-                placeholder="(16) 99999-9999"
-                keyboardType="phone-pad"
+                keyboardType="number-pad" 
+                returnKeyType='done'
+                // errorMenssage={errorCpf}
                 maxLength={14}
-                inputMaskChange={(text: string) => setPhone(text)} 
-                mask={'phone'} 
-                />
+                ref={ref_cpf}
+            />
+            <Text>{errorCpf}</Text>
+            <Text style={styles.text}>Telefone</Text>
+            <TextInputMask
+            placeholder="Telefone"
+            type={'cel-phone'}
+            options={{
+                maskType: 'BRL',
+                withDDD: true,
+                dddMask: '(99) '
+            }}
+            value={telefone}
+            onChangeText={value => {
+                setTelefone(value)
+                setErrorTelefone(null)
+                }
+            }
+            keyboardType="phone-pad"  
+            returnKeyType="done"    
+            ref={(ref) => telefoneField = ref}
+            />      
             {/* <DatePicker
                 style={{width: 200}}
                 date={data}
@@ -269,5 +314,6 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
         </View>
     )
 }
+
 
 export default ClientForm;
