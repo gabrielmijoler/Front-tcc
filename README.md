@@ -1,10 +1,12 @@
+<h1 style="color: green" align="center"> React Native </h1>
+
 <div align="center">
 <img src="https://user-images.githubusercontent.com/69941946/187031363-11c6c533-bdb0-4adc-984c-2069baa50fdc.png" width="300px"></img>
 </div>
-<br> 
-[REACT NATIVE](https://reactnative.dev/docs/getting-started)
+<br>
 
 # [Getting Started](https://reactnative.dev/docs/getting-started) · [Learn the Basics](https://reactnative.dev/docs/tutorial) · [Showcase](https://reactnative.dev/contributing/overview) · [Contribute](https://reactnative.dev/contributing/overview) · [Community](https://reactnative.dev/help) · [Support](https://github.com/facebook/react-native/blob/HEAD/.github/SUPPORT.md)
+
 
 React Native brings [React's](https://reactnative.dev/) declarative UI framework to iOS and Android. With React Native, you use native UI controls and have full access to the native platform.
 
