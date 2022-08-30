@@ -1,5 +1,3 @@
-import { TextInputProps } from "react-native"
-
 export interface Client{
         nome: String,
         email: String,
@@ -116,10 +114,6 @@ export interface IDgclinicos{
         queixa_prin: String,
 }
 
-export interface InputProps extends TextInputProps {
-        mask: "cpf" | "phone" | "email";
-        inputMaskChange: any;
-}
 
         //     idPalpacao: 
         //     geralformpostura: 

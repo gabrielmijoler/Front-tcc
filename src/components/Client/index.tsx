@@ -58,12 +58,12 @@ interface Props{
 const ClientForm: React.FC<Props> = ({dataclient}) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [errorEmail, setErrorEmail] = useState(null)
+    const [errorEmail, setErrorEmail] = useState(null || "")
     const [sexo, setSexo] = useState("");
     const [cpf, setCpf] = useState("");
-    const [errorCpf, setErrorCpf] = useState(null);
+    const [errorCpf, setErrorCpf] = useState(null || "");
     const [telefone, setTelefone] = useState("");
-    const [errorTelefone, setErrorTelefone] = useState(null)
+    const [errorTelefone, setErrorTelefone] = useState(null || "" ) 
     const [data, setData] = useState("");
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [cvstatus, setCvstatus] = useState("");
@@ -81,12 +81,12 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
 
     const validar = () => {
         let error = false
-        setErrorEmail(null)
-        setErrorCpf(null)
+        // setErrorEmail(null)
+        // setErrorCpf(null)
         
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         if (!re.test((email).toLowerCase())){
-          setErrorEmail("Preencha seu e-mail corretamente")
+          setErrorEmail('Preencha seu e-mail corretamente')
           error = true
         }
         if (!ref_cpf.current()){
@@ -161,13 +161,14 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
                 style={styles.input}
                 onChangeText={value => {
                     setEmail(value)
-                    setErrorEmail(null)
+                    setErrorEmail('')
                     }
                 }
                 value={email}
                 keyboardType="email-address"
                 placeholder="teste@hotmail.com"
             />
+            <Text>{setErrorEmail}</Text>
             <Text style={styles.text}>CPF</Text>
             <TextInputMask 
                 placeholder="CPF"
@@ -175,7 +176,7 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
                 value={cpf}
                 onChangeText={value => {
                     setCpf(value)
-                    setErrorCpf(null)
+                    setErrorCpf("")
                     }
                 }
                 style={styles.input}
@@ -198,7 +199,7 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
             value={telefone}
             onChangeText={value => {
                 setTelefone(value)
-                setErrorTelefone(null)
+                // setErrorTelefone(null)
                 }
             }
             keyboardType="phone-pad"  
