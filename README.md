@@ -30,8 +30,13 @@ React Native brings [React's](https://reactnative.dev/) declarative UI framework
     
 See the below table to find out which version of the template to use.
 
-### React Native <=> Template Version    
+## [Android Studio](https://developer.android.com/guide) 
+* [Creating project](https://developer.android.com/training/basics/firstapp/creating-project)
+* [Running App](https://developer.android.com/training/basics/firstapp/running-app)
+* [Building UI](https://developer.android.com/training/basics/firstapp/building-ui)
+<br>
 
+### React Native <=> Template Version    
 | React Native  |  Template  | 
 | --------------|----------- |
 | 0.69 | 6.11*|
