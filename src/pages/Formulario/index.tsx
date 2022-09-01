@@ -1,4 +1,4 @@
-import { View, Button, StyleSheet, Alert, Text, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Button,RefreshControl, StyleSheet, Alert, Text, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import React, { useState } from 'react';
 import ClientForm from '../../components/Client';
 import api from '../../services/api';
@@ -14,7 +14,6 @@ import Algias from '../../components/Algias';
 // tato não obrigatorio
 
 const Formulario: React.FC = () => {
-
   const [client, setClient] = useState<Client>({
     nome: "",
     email: "",
@@ -132,7 +131,9 @@ const Formulario: React.FC = () => {
     }
   });
 
+
   const submit = async () => {
+    const [refreshing, setRefreshing] = React.useState(false);
     try {
       const payload: IFormulario = {
         formpostura: geral.formpostura,
@@ -206,6 +207,14 @@ const Formulario: React.FC = () => {
     }
   }
 
+  const [refreshing, setRefreshing] = React.useState(false);
+  
+  const onRefresh = React.useCallback(() => {
+      setRefreshing(true);
+      setTimeout(() => setRefreshing(false),4000);
+  }, []);
+  
+
   return (
     <View>
       <Text style={styles.title}>FICHA DE AVALIAÇÃO TERAPÊUTICA</Text>
@@ -213,7 +222,14 @@ const Formulario: React.FC = () => {
         style={styles.scrollView}
         behavior={Platform.OS == "ios" ? "padding" : "height"}
         keyboardVerticalOffset={80}>
-        <ScrollView style={{width:"100%"}}>
+        <ScrollView 
+            style={{width:"100%"}}
+            refreshControl={ <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+              />
+            }
+          >
           <ClientForm dataclient={setClient} />
           <LinguaForm datalingua={setLingua} />
           <Geral datageral={setGeral} />
