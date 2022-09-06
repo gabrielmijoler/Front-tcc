@@ -4,7 +4,6 @@ import api from '../../services/api';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Client } from '../../models';
 import DatePicker from 'react-native-datepicker';
-import Picker from 'react-native-picker-select';
 import RNPickerSelect from 'react-native-picker-select'
 import { TextInputMask } from 'react-native-masked-text'
 
