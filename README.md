@@ -8,7 +8,7 @@
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
 
 
-# [Getting Started](https://reactnative.dev/docs/getting-started) · [Learn the Basics](https://reactnative.dev/docs/tutorial) · [Showcase](https://reactnative.dev/contributing/overview) · [Contribute](https://reactnative.dev/contributing/overview) · [Community](https://reactnative.dev/help) · [Support](https://github.com/facebook/react-native/blob/HEAD/.github/SUPPORT.md)
+# [Getting Started](https://reactnative.dev/docs/getting-started) · [Learn the Basics](https://reactnative.dev/docs/tutorial) · [Showcase](https://reactnative.dev/contributing/overview)
 
 
 React Native brings [React's](https://reactnative.dev/) declarative UI framework to iOS and Android. With React Native, you use native UI controls and have full access to the native platform.
@@ -36,19 +36,6 @@ See the below table to find out which version of the template to use.
 * [Building UI](https://developer.android.com/training/basics/firstapp/building-ui)
 <br>
 
-### React Native <=> Template Version    
-| React Native  |  Template  | 
-| --------------|----------- |
-| 0.69 | 6.11*|
-| 0.68 | 6.10*|
-| 0.66 |6.9*|
-| 0.66 |6.8*|
-| 0.65| 6.7*|
-| 0.64| 6.6*|
-| 0.63| 6.5*|
-| 0.62| 6.4*|
-| 0.61| 6.3*|
-| 0.60| 6.2*|
 
 ## Contents
 * [Requirements](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#requirements)
