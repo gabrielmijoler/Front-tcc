@@ -8,7 +8,7 @@
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
 
 
-# [Getting Started](https://reactnative.dev/docs/getting-started) · [Learn the Basics](https://reactnative.dev/docs/tutorial) · [Showcase](https://reactnative.dev/contributing/overview)
+## [Getting Started](https://reactnative.dev/docs/getting-started) · [Learn the Basics](https://reactnative.dev/docs/tutorial) · [Showcase](https://reactnative.dev/contributing/overview)
 
 
 React Native brings [React's](https://reactnative.dev/) declarative UI framework to iOS and Android. With React Native, you use native UI controls and have full access to the native platform.
@@ -40,8 +40,6 @@ React Native brings [React's](https://reactnative.dev/) declarative UI framework
 * [Requirements](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#requirements)
 * [Building your first React Native app](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#building-your-first-react-native-app)
 * [Documentation](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#documentation)
-* [Upgrading](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#upgrading)
-
 
 
 ## Requirements
@@ -60,9 +58,7 @@ The full documentation for React Native can be found on our [website](https://re
 
 The React Native documentation discusses components, APIs, and topics that are specific to React Native. For further documentation on the React API that is shared between React Native and React DOM, refer to the [React documentation](https://reactjs.org/docs/getting-started.html).
 
-## Upgrading
-Upgrading to new versions of React Native may give you access to more APIs, views, developer tools, and other goodies. See the Upgrading Guide for instructions.
-React Native releases are discussed in this discussion repo.
+
 
 
 
