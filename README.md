@@ -1,5 +1,4 @@
 <h2 align="center"> REACT NATIVE </h2>
-
 <div align="center">
 <img src="https://user-images.githubusercontent.com/69941946/187031363-11c6c533-bdb0-4adc-984c-2069baa50fdc.png" width="500px"></img>
 </div>
@@ -45,7 +44,7 @@ The recommended way to install React Native depends on your project. Here you ca
 * [Creating a New Application](https://reactnative.dev/docs/getting-started)
 * [Adding React Native to an Existing Application](https://reactnative.dev/docs/integration-with-existing-apps)
 
-## Documentation
+## :closed_book:Documentation
 The full documentation for React Native can be found on our [website](https://reactnative.dev/docs/getting-started).
 
 The React Native documentation discusses components, APIs, and topics that are specific to React Native. For further documentation on the React API that is shared between React Native and React DOM, refer to the [React documentation](https://reactjs.org/docs/getting-started.html).
@@ -65,7 +64,7 @@ The React Native documentation discusses components, APIs, and topics that are s
       npx run android
 
 
-## GitHub Stats
+## 📈 GitHub Stats 
 ![YOUR github stats](https://github-readme-stats.vercel.app/api?username=gabrielmijoler&show_icons=true&theme=dracula&count_private)
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=gabrielmijoler&layout=compact&theme=highcontrast)](https://github.com/gabrielmijoler/Front-tcc) 
 
