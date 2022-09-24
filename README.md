@@ -1,7 +1,7 @@
 <h2 align="center"> REACT NATIVE </h2>
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/69941946/187031363-11c6c533-bdb0-4adc-984c-2069baa50fdc.png" width="300px"></img>
+<img src="https://user-images.githubusercontent.com/69941946/187031363-11c6c533-bdb0-4adc-984c-2069baa50fdc.png" width="500px"></img>
 </div>
 <br>
 
@@ -27,9 +27,11 @@ React Native brings [React's](https://reactnative.dev/) declarative UI framework
 <br>
 
       npx react-native init MyApp --template react-native-template-typescript@6.9.*
-
+      
+ 
+<br>
 <div align="center">
-<img src="" width="300px"></img>
+<img src="https://user-images.githubusercontent.com/69941946/192096425-a943bbc4-733c-4949-bc1e-180cec28c350.jpg" width="500px"></img>
 </div>
 
 ## [Android Studio](https://developer.android.com/guide) 
