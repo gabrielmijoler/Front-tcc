@@ -73,6 +73,5 @@ The main purpose of this repository is to continue evolving React Native core. W
 ## [Contributing Guide](https://reactnative.dev/contributing/overview)
 Read our Contributing Guide to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to React Native.
 
-## Discussions
-Larger discussions and proposals are discussed in [@react-native-community/discussions-and-proposals](https://github.com/react-native-community/discussions-and-proposals).
+
 
