@@ -5,7 +5,7 @@
 </div>
 <br>
 
-![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge) · ![GitHub Org's stars](https://img.shields.io/github/stars/gabrielmijoler?style=social)
 
 
 ## [Getting Started](https://reactnative.dev/docs/getting-started) · [Learn the Basics](https://reactnative.dev/docs/tutorial) · [Showcase](https://reactnative.dev/contributing/overview)
@@ -62,6 +62,8 @@ The React Native documentation discusses components, APIs, and topics that are s
 * [Building UI](https://developer.android.com/training/basics/firstapp/building-ui)
 
 
+<!-- <nome da seção> starts -->
+<!-- <nome da seção> ends -->
 
 
 
