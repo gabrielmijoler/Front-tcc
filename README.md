@@ -5,7 +5,7 @@
 </div>
 <br>
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=gabrielmijoler&title_color=black)](https://github.com/gabrielmijoler/Front-tcc)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=gabrielmijoler&exclude_repo=Front-tcc)](https://github.com/gabrielmijoler/Front-tcc)
 
 
 
