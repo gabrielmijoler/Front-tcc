@@ -27,8 +27,7 @@ React Native brings [React's](https://reactnative.dev/) declarative UI framework
 <br>
 
       npx react-native init MyApp --template react-native-template-typescript@6.9.*
-    
-See the below table to find out which version of the template to use.
+
 
 ## [Android Studio](https://developer.android.com/guide) 
 * [Creating project](https://developer.android.com/training/basics/firstapp/creating-project)
@@ -44,7 +43,6 @@ See the below table to find out which version of the template to use.
 * [Upgrading](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#upgrading)
 * [How to Contribute](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#how-to-contribute)
 * [Code of Conduct](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#contributing-guide)
-
 
 ## Requirements
 React Native apps may target iOS 12.4 and Android 5.0 (API 21) or newer. You may use Windows, macOS, or Linux as your development operating system, though building and running iOS apps is limited to macOS. Tools like Expo can be used to work around this.
