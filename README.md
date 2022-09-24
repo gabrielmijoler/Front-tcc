@@ -41,8 +41,8 @@ React Native brings [React's](https://reactnative.dev/) declarative UI framework
 * [Building your first React Native app](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#building-your-first-react-native-app)
 * [Documentation](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#documentation)
 * [Upgrading](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#upgrading)
-* [How to Contribute](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#how-to-contribute)
-* [Code of Conduct](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#contributing-guide)
+
+
 
 ## Requirements
 React Native apps may target iOS 12.4 and Android 5.0 (API 21) or newer. You may use Windows, macOS, or Linux as your development operating system, though building and running iOS apps is limited to macOS. Tools like Expo can be used to work around this.
@@ -62,14 +62,10 @@ The React Native documentation discusses components, APIs, and topics that are s
 
 ## Upgrading
 Upgrading to new versions of React Native may give you access to more APIs, views, developer tools, and other goodies. See the Upgrading Guide for instructions.
-
 React Native releases are discussed in this discussion repo.
 
-## How to Contribute
-The main purpose of this repository is to continue evolving React Native core. We want to make contributing to this project as easy and transparent as possible, and we are grateful to the community for contributing bug fixes and improvements. Read below to learn how you can take part in improving React Native.
 
-## [Contributing Guide](https://reactnative.dev/contributing/overview)
-Read our Contributing Guide to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to React Native.
+
 
 
 
