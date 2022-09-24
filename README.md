@@ -28,19 +28,6 @@ React Native brings [React's](https://reactnative.dev/) declarative UI framework
 
       npx react-native init MyApp --template react-native-template-typescript@6.9.*
       
- 
-<br>
-<div align="center">
-<img src="https://user-images.githubusercontent.com/69941946/192096425-a943bbc4-733c-4949-bc1e-180cec28c350.jpg" width="500px"></img>
-</div>
-
-## [Android Studio](https://developer.android.com/guide) 
-* [Creating project](https://developer.android.com/training/basics/firstapp/creating-project)
-* [Running App](https://developer.android.com/training/basics/firstapp/running-app)
-* [Building UI](https://developer.android.com/training/basics/firstapp/building-ui)
-<br>
-
-
 ## Contents
 * [Requirements](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#requirements)
 * [Building your first React Native app](https://github.com/gabrielmijoler/Front-tcc/edit/main/README.md#building-your-first-react-native-app)
@@ -62,6 +49,21 @@ The recommended way to install React Native depends on your project. Here you ca
 The full documentation for React Native can be found on our [website](https://reactnative.dev/docs/getting-started).
 
 The React Native documentation discusses components, APIs, and topics that are specific to React Native. For further documentation on the React API that is shared between React Native and React DOM, refer to the [React documentation](https://reactjs.org/docs/getting-started.html).
+
+## [Android Studio](https://developer.android.com/guide) 
+ 
+<div align="center">
+<img src="https://user-images.githubusercontent.com/69941946/192096425-a943bbc4-733c-4949-bc1e-180cec28c350.jpg" width="500px"></img>
+</div>
+
+## Download
+* [Creating project](https://developer.android.com/training/basics/firstapp/creating-project)
+* [Running App](https://developer.android.com/training/basics/firstapp/running-app)
+* [Building UI](https://developer.android.com/training/basics/firstapp/building-ui)
+
+
+
+
 
 
 
