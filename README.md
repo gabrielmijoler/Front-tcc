@@ -65,7 +65,7 @@ The React Native documentation discusses components, APIs, and topics that are s
       npx run android
 
 
-## Profile
+## GitHub Stats
 ![YOUR github stats](https://github-readme-stats.vercel.app/api?username=gabrielmijoler&show_icons=true&theme=dracula&count_private)
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=gabrielmijoler&layout=compact&theme=highcontrast)](https://github.com/gabrielmijoler/Front-tcc) 
 
