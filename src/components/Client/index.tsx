@@ -57,7 +57,7 @@ interface Props{
 const ClientForm: React.FC<Props> = ({dataclient}) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [errorEmail, setErrorEmail] = useState(null || "")
+    const [errorEmail, setErrorEmail] = useState("")
     const [sexo, setSexo] = useState("");
     const [cpf, setCpf] = useState("");
     const [errorCpf, setErrorCpf] = useState(null || "");
@@ -80,8 +80,8 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
 
     const validar = () => {
         let error = false
-        // setErrorEmail(null)
-        // setErrorCpf(null)
+        setErrorEmail('')
+        setErrorCpf('')
         
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         if (!re.test((email).toLowerCase())){
@@ -167,7 +167,7 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
                 keyboardType="email-address"
                 placeholder="teste@hotmail.com"
             />
-            <Text>{setErrorEmail}</Text>
+            <Text>{errorEmail}</Text>
             <Text style={styles.text}>CPF</Text>
             <TextInputMask 
                 placeholder="CPF"
@@ -198,7 +198,7 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
             value={telefone}
             onChangeText={value => {
                 setTelefone(value)
-                // setErrorTelefone(null)
+                setErrorTelefone('')
                 }
             }
             keyboardType="phone-pad"  

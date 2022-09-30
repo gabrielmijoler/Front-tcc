@@ -84,7 +84,7 @@ export interface IBasicArray{
         id:Number,
         name: String,
         value:String,
-        checked: Boolean
+        checked: boolean
     }
 export interface IAlgias{
         Coluna: Number,

@@ -9,6 +9,7 @@ import Interrogatorio from '../../components/Interrogatório';
 import Auscultacao from '../../components/Auscultação';
 import Torax from '../../components/Torax';
 import Algias from '../../components/Algias';
+import Steps from '../../components/Steps';
 
 // menstruação mostrar so qd for mulher selecionado
 // tato não obrigatorio
@@ -213,30 +214,44 @@ const Formulario: React.FC = () => {
       setRefreshing(true);
       setTimeout(() => setRefreshing(false),4000);
   }, []);
+
+  const [currentPage, setCurrentPage] = React.useState(0);
   
+  const onStepPress = (position: number) => {
+    setCurrentPage(position);
+  };
 
   return (
     <View>
       <Text style={styles.title}>FICHA DE AVALIAÇÃO TERAPÊUTICA</Text>
+      <Steps
+        currentPage={currentPage}
+        onStepPress={onStepPress}
+      />
       <KeyboardAvoidingView
         style={styles.scrollView}
         behavior={Platform.OS == "ios" ? "padding" : "height"}
         keyboardVerticalOffset={80}>
         <ScrollView 
-            style={{width:"100%"}}
-            refreshControl={ <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-              />
-            }
-          >
-          <ClientForm dataclient={setClient} />
-          <LinguaForm datalingua={setLingua} />
-          <Geral datageral={setGeral} />
+          style={{width:"100%"}}
+          refreshControl={ <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+            />
+          }
+        >
+          { currentPage === 0 && (
+            <ClientForm dataclient={setClient} />
+          )}
+          { currentPage === 1 && (
+            <LinguaForm datalingua={setLingua} />
+          )}
+          
+          {/* <Geral datageral={setGeral} />
           <Auscultacao dataAuscultacao={setAuscultacao} />
           <Interrogatorio dataformulario={setInterroga} />
           <Algias dataAlgias={setAlgias} />
-          <Torax datatorax={setTorax} />
+          <Torax datatorax={setTorax} /> */}
           <View style={styles.button}>
             <Button
               title="Enviar"
@@ -247,7 +262,6 @@ const Formulario: React.FC = () => {
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
-
   )
 }
 

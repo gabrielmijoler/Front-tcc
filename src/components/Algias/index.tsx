@@ -53,6 +53,7 @@ interface Props{
     dataAlgias: (data: IAlgias)=> void
 }
 
+
 const Algias: React.FC<Props> = ({ dataAlgias }) => {
     const [coluna, setColuna] = useState<IBasicArray[]>([
         { id: 1, name: 'Cervical', value: 'Cervical', checked: false },
@@ -80,55 +81,7 @@ const Algias: React.FC<Props> = ({ dataAlgias }) => {
     ]);
     const [obscoluna, setObscoluna] = useState("");
     const [obsabdome, setObsabdome] = useState("");
-    {
-        coluna.map((item) => {
-            return (
-                <>
-                    <Text style={styles.text} children={item.name}></Text>
-                    <CheckBox
-                        onValueChange={() => item.checked = !item.checked}
-                    />
-                </>
-            );
-        })
-    }
-    {
-        doresmusculares.map((item) => {
-            return (
-                <>
-                    <Text style={styles.text} children={item.name}></Text>
-                    <CheckBox
-                        onValueChange={() => item.checked = !item.checked}
-                    />
-                </>
-            );
-        })
-    }
-    {
-        doresarticulares.map((item) => {
-            return (
-                <>
-                    <Text style={styles.text} children={item.name}></Text>
-                    <CheckBox
-                        onValueChange={() => item.checked = !item.checked}
-                    />
-                </>
-            );
-        })
-    }
-    {
-        abdome.map((item) => {
-            return (
-                <>
-                    <Text style={styles.text} children={item.name}></Text>
-                    <CheckBox
-                        onValueChange={() => item.checked = !item.checked}
-                        accessibilityRole='radio'
-                    />
-                </>
-            );
-        })
-    }
+    
     useEffect(()=>{
         dataAlgias({
             Coluna: 0,
@@ -139,21 +92,51 @@ const Algias: React.FC<Props> = ({ dataAlgias }) => {
             obs_abdome: '',
         } as  IAlgias,)
     }, [])
+    
 
     return (
         <View>
-            <TextInput
-                onChangeText={setObscoluna}
-                value={obscoluna}
-                placeholder="Observação Coluna"
-                style={styles.obs}
-            />
-            <TextInput
-                onChangeText={setObsabdome}
-                value={obsabdome}
-                placeholder="Observação Abdome"
-                style={styles.obs}
-            />
+            {coluna.map((item) => {
+                return (
+                    <View key={`${item.id}`}>
+                        <Text style={styles.text} children={item.name}></Text>
+                        <CheckBox
+                            onValueChange={() => item.checked = !item.checked}
+                        />
+                    </View>
+                );
+            })}
+            {doresmusculares.map((item) => {
+                return (
+                    <View key={`${item.id}`}>
+                        <Text style={styles.text} children={item.name}></Text>
+                        <CheckBox
+                            onValueChange={() => item.checked = !item.checked}
+                        />
+                    </View>
+                );
+            })}
+            {doresarticulares.map((item) => {
+                return (
+                    <View key={`${item.id}`}>
+                        <Text style={styles.text} children={item.name}></Text>
+                        <CheckBox
+                            onValueChange={() => item.checked = !item.checked}
+                        />
+                    </View>
+                );
+            })}
+            {abdome.map((item) => {
+                return (
+                    <View key={`${item.id}`}>
+                        <Text style={styles.text} children={item.name}></Text>
+                        <CheckBox
+                            onValueChange={() => item.checked = !item.checked}
+                            accessibilityRole='radio'
+                        />
+                    </View>
+                );
+            })}
         </View>
     )
 }
