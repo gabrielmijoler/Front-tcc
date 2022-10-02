@@ -1,7 +1,7 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
-import { Client, IAlgias, IBasicArray } from '../../models';
+import { IAlgias, IBasicArray } from '../../models';
 import CheckBox from '@react-native-community/checkbox';
 
 const styles = StyleSheet.create({
@@ -88,55 +88,74 @@ const Algias: React.FC<Props> = ({ dataAlgias }) => {
             Obs_coluna: '',
             dores_musculares: '',
             dores_articulares: '',
-            abdome: [],
+            abdome: '',
             obs_abdome: '',
+            basic:[],
         } as  IAlgias,)
     }, [])
     
 
     return (
         <View>
-            {coluna.map((item) => {
-                return (
-                    <View key={`${item.id}`}>
-                        <Text style={styles.text} children={item.name}></Text>
-                        <CheckBox
-                            onValueChange={() => item.checked = !item.checked}
-                        />
-                    </View>
-                );
-            })}
-            {doresmusculares.map((item) => {
-                return (
-                    <View key={`${item.id}`}>
-                        <Text style={styles.text} children={item.name}></Text>
-                        <CheckBox
-                            onValueChange={() => item.checked = !item.checked}
-                        />
-                    </View>
-                );
-            })}
-            {doresarticulares.map((item) => {
-                return (
-                    <View key={`${item.id}`}>
-                        <Text style={styles.text} children={item.name}></Text>
-                        <CheckBox
-                            onValueChange={() => item.checked = !item.checked}
-                        />
-                    </View>
-                );
-            })}
-            {abdome.map((item) => {
-                return (
-                    <View key={`${item.id}`}>
-                        <Text style={styles.text} children={item.name}></Text>
-                        <CheckBox
-                            onValueChange={() => item.checked = !item.checked}
-                            accessibilityRole='radio'
-                        />
-                    </View>
-                );
-            })}
+            <Text style={styles.text}>Dores na Coluna</Text>
+                {coluna.map((item) => {
+                    return (
+                        <View key={`${item.id}`}>
+                            <Text style={styles.text} children={item.name}></Text>
+                            <CheckBox
+                                onValueChange={() => item.checked = !item.checked}
+                            />
+                        </View>
+                    );
+                })}
+            <TextInput
+                onChangeText={setObscoluna}
+                value={obscoluna}
+                placeholder="Observação Coluna"
+                style={styles.obs}
+            />
+            <Text style={styles.title}>Algias periféricas em membros superiores e inferiores</Text>
+            <Text style={styles.text}>Dores musculares</Text>
+                {doresmusculares.map((item) => {
+                    return (
+                        <View key={`${item.id}`}>
+                            <Text style={styles.text} children={item.name}></Text>
+                            <CheckBox
+                                onValueChange={() => item.checked = !item.checked}
+                            />
+                        </View>
+                    );
+                })}
+
+            <Text style={styles.text}>Dores articulares (Síndrome Bi)</Text>
+                {doresarticulares.map((item) => {
+                    return (
+                        <View key={`${item.id}`}>
+                            <Text style={styles.text} children={item.name}></Text>
+                            <CheckBox
+                                onValueChange={() => item.checked = !item.checked}
+                            />
+                        </View>
+                    );
+                })}
+            <Text style={styles.text}>Dores no Abdome</Text>
+                {abdome.map((item) => {
+                    return (
+                        <View key={`${item.id}`}>
+                            <Text style={styles.text} children={item.name}></Text>
+                            <CheckBox
+                                onValueChange={() => item.checked = !item.checked}
+                                accessibilityRole='radio'
+                            />
+                        </View>
+                    );
+                })}
+            <TextInput
+                onChangeText={setObsabdome}
+                value={obsabdome}
+                placeholder="Observação Abdome"
+                style={styles.obs}
+            />
         </View>
     )
 }

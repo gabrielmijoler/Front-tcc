@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View} from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
 
 const stepIndicatorStyles = {
@@ -28,19 +28,25 @@ const steps = [
     title: 'Cliente',
   },
   {
-    title: 'Introduction',
+    title: 'Lingua',
   },
   {
-    title: 'Chapter 1',
+    title: 'Geral',
   },
   {
-    title: 'Chapter 2',
+    title: 'Auscultação',
   },
   {
-    title: 'Chapter 3',
+    title: 'Interrogatório',
   },
   {
-    title: 'About',
+    title: 'Algias',
+  },
+  {
+    title: 'Tórax',
+  },
+  {
+    title: 'Condutas',
   },
 ]
 
@@ -54,7 +60,7 @@ const Steps: React.FC<Props>  = ({currentPage, onStepPress}) => {
     <View style={styles.container}>
       <StepIndicator
         customStyles={stepIndicatorStyles}
-        stepCount={6}
+        stepCount={8}
         direction="horizontal"
         currentPosition={currentPage}
         onPress={(position: number) => onStepPress(position)}

@@ -1,10 +1,8 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import api from '../../services/api';
-import { Client, ITorax } from '../../models';
+import {IBasicArray, ITorax } from '../../models';
 import CheckBox from '@react-native-community/checkbox';
 import RNPickerSelect from 'react-native-picker-select'
-import { PrivateValueStore } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
     input: {
@@ -55,12 +53,12 @@ interface Props {
     datatorax: (data: ITorax) => void
 }
 const Torax: React.FC<Props> = ({ datatorax }) => {
-    const [torax, setTorax] = useState([
+    const [torax, setTorax] = useState<IBasicArray[]>([
         { id: 1, name: 'Dores (alterações patológicas do C e P)', value: 'Dores (alterações patológicas do C e P)', checked: false },
         { id: 2, name: 'Opressão (Qi perverso frio e umidade no P)', value: 'Opressão (Qi perverso frio e umidade no P)', checked: false },
 
     ])
-    const [dorescabeca, setDorescabeca] = useState([
+    const [dorescabeca, setDorescabeca] = useState<IBasicArray[]>([
         { id: 1, name: 'Frontal (retenção de alimentos no E)', value: 'Frontal (retenção de alimentos no E)', checked: false },
         { id: 2, name: 'Orbital (def. Xue do F)', value: 'Orbital (def. Xue do F)', checked: false },
         { id: 3, name: 'Ápice (excesso/ascensão Yang F)', value: 'Ápice (excesso/ascensão Yang F)', checked: false },
@@ -72,60 +70,31 @@ const Torax: React.FC<Props> = ({ datatorax }) => {
     const [obsdorescab, setObsdorescab] = useState("")
     const [escalanalog, setEscalanalog] = useState("")
     const pickerRef = React.useRef<RNPickerSelect | null>()
-    {
-        torax.map((item) => {
-            return (
-                <>
-                    <Text key={item.name}></Text>
-                    <CheckBox
-                        key={item.id}
-                        onValueChange={() => item.checked = !item.checked}
-                    />
-                </>
-            );
-        })
-    }
-    {
-        dorescabeca.map((item) => {
-            return (
-                <>
-                    <Text key={item.name}></Text>
-                    <CheckBox
-                        key={item.id}
-                        onValueChange={() => item.checked = !item.checked}
-                    />
-                </>
-            );
-        })
-    }
 
-    // {torax.map((item) => (
-    //      `<CheckBox
-    //      onValueChange={(item)=>${item.titulo}${item.value}}
-    //     />`
-    // ))}
-
-    // useEffect(() => {
-    //     datatorax({
-    //         Torax: torax,
-    //         Dores_cabeca: dorescabeca,
-    //         Obs_torax: obstorax,
-    //         Obs_dorescabe: obsdorescab,
-    //         Escala_analogdor: escalanalog,
-    //     } as ITorax)
-    // }, [
-    //     torax,
-    //     dorescabeca,
-    //     obstorax,
-    //     obsdorescab,
-    //     escalanalog,
-    // ])
-
+    useEffect(() => {
+        datatorax({
+            Torax: 0,
+            Dores_cabeca: 0,
+            Obs_torax: '',
+            Obs_dorescabe: '',
+            Escala_analogdor:'',
+            basic:[],
+        } as ITorax)
+    }, [])
 
     return (
-
         <View>
             <Text style={styles.text}>Tórax</Text>
+                {torax.map((item) => {
+                        return (
+                            <View key={`${item.id}`}>
+                                <Text style={styles.text} children={item.name}></Text>
+                                <CheckBox
+                                    onValueChange={() => item.checked = !item.checked}
+                                />
+                            </View>
+                        );
+                })}
             <TextInput
                 onChangeText={setObstorax}
                 value={obstorax}
@@ -133,6 +102,16 @@ const Torax: React.FC<Props> = ({ datatorax }) => {
                 style={styles.obs}
             />
             <Text style={styles.text}>Dores de cabeça</Text>
+                {dorescabeca.map((item) => {
+                            return (
+                                <View key={`${item.id}`}>
+                                    <Text style={styles.text} children={item.name}></Text>
+                                    <CheckBox
+                                        onValueChange={() => item.checked = !item.checked}
+                                    />
+                                </View>
+                            );
+                })}
             <TextInput
                 onChangeText={setObsdorescab}
                 value={obsdorescab}

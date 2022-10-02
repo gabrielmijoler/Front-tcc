@@ -15,22 +15,25 @@ export interface Client{
 
 export interface ILingua{
         lingua: Number,
-        obs_lingua: String, // add
+        obs_lingua: String,
+        basic: IBasicArray[],
 }
 export interface IGeral{
         cor_pele: Number,
-        cabeecabelos_input: String, //add
+        cabeecabelos_input: String,
         formpostura: Number
         Nariz: String,
         Orelhas: String,
         Labios_input: String,
         Pele: String,
+        basic: IBasicArray[],
 }
 
 export interface IAuscultação{
         Fala: Number,
         Respiracao: Number,
         obs_fala: String,
+        basic: IBasicArray[],
 }
 
 export interface IFormulario{
@@ -91,15 +94,17 @@ export interface IAlgias{
         Obs_coluna: String,
         dores_musculares: String,
         dores_articulares: String,
-        abdome: IBasicArray[],
+        abdome: String,
+        basic: IBasicArray[],
         obs_abdome: String,
 }
 export interface ITorax{
-        Torax: String,
-        Dores_cabeca: String,
+        Torax: Number,
+        Dores_cabeca: Number,
         Obs_torax: String,
         Obs_dorescabe: String,
-        Escala_analogdor: String
+        Escala_analogdor: String,
+        basic: IBasicArray[],
 }
 export interface IFinal{
         Neuromuscular: String,

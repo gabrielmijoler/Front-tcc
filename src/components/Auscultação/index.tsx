@@ -1,7 +1,7 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
-import { Client, IAuscultação } from '../../models';
+import { Client, IAuscultação, IBasicArray } from '../../models';
 import DatePicker from 'react-native-datepicker';
 import CheckBox from '@react-native-community/checkbox';
 
@@ -54,76 +54,53 @@ interface Props{
     dataAuscultacao: (data: IAuscultação)=> void
 }
 const Auscultacao: React.FC<Props> = ({dataAuscultacao}) => {
-    const [fala, setFala] = useState(0);
-    const [respiracao, setRespiracao] = useState(0);
+    const [fala, setFala] = useState<IBasicArray[]>([
+        { id: 1, name: 'Fala alta  (síndrome de excesso, calor)', value: 'Fala alta  (síndrome de excesso, calor)', checked: false },
+        { id: 2, name: 'Fala baixo (síndrome de def. , frio)', value: 'Fala baixo (síndrome de def. , frio)', checked: false },
+        { id: 3, name: 'Fala incoerente (debilidade do C)', value: 'Fala incoerente (debilidade do C)', checked: false },
+        { id: 4, name: 'Fala muito (def. Yin do C)', value: 'Fala muito (def. Yin do C)', checked: false },
+        { id: 5, name: 'Gagueira (Qi perverso vento/fleuma C)', value: 'Gagueira (Qi perverso vento/fleuma C)', checked: false },
+        { id: 6, name: 'Chorosa,  gemência (obstrução do Qi do P)', value: 'Chorosa,  gemência (obstrução do Qi do P)', checked: false },
+        { id: 7, name: 'Rouquidão, afonia gradual (def. Yin Qi do P e R)', value: 'Rouquidão, afonia gradual (def. Yin Qi do P e R)', checked: false },
+        { id: 8, name: 'Afonia súbita (estase de  Qi do P, obstrução  de Qi do P)', value: 'Afonia súbita (estase de  Qi do P, obstrução  de Qi do P)', checked: false },
+        { id: 9, name: 'Sem fala (frio interno, lesão interna)', value: 'Sem fala (frio interno, lesão interna)', checked: false },
+        { id: 10, name: 'Pouca fala (síndrome def.iciência, Qi perverso frio ou lesão interna)', value: 'Pouca fala (síndrome def.iciência, Qi perverso frio ou lesão interna)', checked: false },
+    ])
+    const [respiracao, setRespiracao] = useState<IBasicArray[]>([
+        { id: 1, name: 'Respiração fraca (def. Qi do C e P)', value: 'Respiração fraca (def. Qi do C e P)', checked: false },
+        { id: 2, name: 'Falta de ar (def. Qi do P)', value: 'Falta de ar (def. Qi do P)', checked: false },
+        { id: 3, name: 'Suspiro (estase do Qi do F)', value: 'Suspiro (estase do Qi do F)', checked: false },
+        { id: 4, name: 'Tosse seca ( def. Yin do P)', value: 'Tosse seca ( def. Yin do P)', checked: false },
+        { id: 5, name: 'Respiração forçada (flegma, Qi perverso umidade em P)', value: 'Respiração forçada (flegma, Qi perverso umidade em P)', checked: false },
+        { id: 6, name: 'Dispnéia (estase  de  Qi do P)', value: 'Dispnéia (estase  de  Qi do P)', checked: false },
+        { id: 7, name: 'Tosse rouca (Qi perverso vento-frio ou frio/flegma no P)', value: 'Tosse rouca (Qi perverso vento-frio ou frio/flegma no P)', checked: false },
+        { id: 8, name: 'Tosse clara (Qi perverso vento/calor ou flegma/calor no P)', value: 'Tosse clara (Qi perverso vento/calor ou flegma/calor no P)', checked: false },
+    ])
     const [falaobsr, setFalaobsr] = useState("");
 
     useEffect(()=>{
         dataAuscultacao({
-            Fala: fala,
-            Respiracao: respiracao,
-            obs_fala: falaobsr,
+            Fala: 0,
+            Respiracao: 0,
+            obs_fala: '',
+            basic:[],
         }as IAuscultação)
-    }, [
-        fala,
-        respiracao,
-        falaobsr,
-    ])
+    }, [])
 
     return (
         <View>
             <Text style={styles.title}>Auscultação</Text>
-            <Text style={styles.text}>Fala</Text>
-            <Text>Fala alta  (síndrome de excesso, calor )</Text>
-            <CheckBox
-                value={fala === 1}
-                onValueChange={()=>setFala(1)}
-            />
-            <Text>Fala baixo (síndrome de def. , frio)</Text>
-            <CheckBox
-               value={fala === 2}
-               onValueChange={()=>setFala(2)}
-            />
-            <Text>Fala incoerente (debilidade do C)</Text>
-            <CheckBox
-               value={fala === 3}
-               onValueChange={()=>setFala(3)}
-            />
-            <Text>Fala muito (def. Yin do C )</Text>
-            <CheckBox
-                value={fala === 4}
-                onValueChange={()=>setFala(4)}
-            />
-            <Text>Gagueira (Qi perverso vento/fleuma C)</Text>
-            <CheckBox
-                value={fala === 5}
-                onValueChange={()=>setFala(5)}
-            />
-            <Text>Chorosa,  gemência (obstrução do Qi do P)</Text>
-            <CheckBox
-                value={fala === 6}
-                onValueChange={()=>setFala(6)}
-            />
-            <Text>Rouquidão, afonia gradual (def. Yin Qi do P e R)</Text>
-            <CheckBox
-                value={fala === 7}
-                onValueChange={()=>setFala(7)}
-            />
-            <Text>Afonia súbita (estase de  Qi do P, obstrução  de Qi do P)</Text>
-            <CheckBox
-                value={fala === 8}
-                onValueChange={()=>setFala(8)}
-            />
-            <Text>Sem fala (frio interno, lesão interna)</Text>
-            <CheckBox
-               value={fala === 9}
-               onValueChange={()=>setFala(9)}
-            />
-            <Text>Pouca fala (síndrome def.iciência, Qi perverso frio ou lesão interna)</Text>
-            <CheckBox
-                value={fala === 10}
-                onValueChange={()=>setFala(10)}
-            />
+            <Text style={styles.title}>Fala</Text>
+                {fala.map((item) => {
+                    return (
+                        <View key={`${item.id}`}>
+                            <Text style={styles.text} children={item.name}></Text>
+                            <CheckBox
+                                onValueChange={() => item.checked = !item.checked}
+                            />
+                        </View>
+                    );
+                })}
             <Text>Observação</Text>
             <TextInput
                 onChangeText={setFalaobsr}
@@ -132,47 +109,16 @@ const Auscultacao: React.FC<Props> = ({dataAuscultacao}) => {
                 style={styles.obs}
             />
             <Text style={styles.title}>Respiração</Text>
-
-            <Text>Respiração fraca (def. Qi do C e P)</Text>
-            <CheckBox
-                value={respiracao === 1}
-                onValueChange={()=>setRespiracao(1)}
-            />
-            <Text>Falta de ar (def. Qi do P)</Text>
-            <CheckBox
-                value={respiracao === 2}
-                onValueChange={()=>setRespiracao(2)}
-            />
-            <Text>Suspiro (estase do Qi do F)</Text>
-            <CheckBox
-                value={respiracao === 3}
-                onValueChange={()=>setRespiracao(3)}
-            />
-            <Text>Tosse seca ( def. Yin do P) </Text>
-            <CheckBox
-                value={respiracao === 4}
-                onValueChange={()=>setRespiracao(4)}
-            />
-            <Text>Respiração forçada (flegma, Qi perverso umidade em P) </Text>
-            <CheckBox
-                value={respiracao === 5}
-                onValueChange={()=>setRespiracao(5)}
-            />
-            <Text>Dispnéia (estase  de  Qi do P)</Text>
-            <CheckBox
-                value={respiracao === 6}
-                onValueChange={()=>setRespiracao(6)}
-            />
-            <Text>Tosse rouca (Qi perverso vento-frio ou frio/flegma no P) </Text>
-            <CheckBox
-                value={respiracao === 7}
-                onValueChange={()=>setRespiracao(7)}
-            />
-            <Text> Tosse clara (Qi perverso vento/calor ou flegma/calor no P)</Text>
-            <CheckBox
-                value={respiracao === 8}
-                onValueChange={()=>setRespiracao(8)}
-            />
+                {respiracao.map((item) => {
+                    return (
+                        <View key={`${item.id}`}>
+                            <Text style={styles.text} children={item.name}></Text>
+                            <CheckBox
+                                onValueChange={() => item.checked = !item.checked}
+                            />
+                        </View>
+                    );
+                })}
         </View>
     )
 }

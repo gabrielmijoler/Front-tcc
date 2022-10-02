@@ -1,4 +1,4 @@
-import { View, Button,RefreshControl, StyleSheet, Alert, Text, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Button, RefreshControl, StyleSheet, Alert, Text, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import React, { useState } from 'react';
 import ClientForm from '../../components/Client';
 import api from '../../services/api';
@@ -209,14 +209,14 @@ const Formulario: React.FC = () => {
   }
 
   const [refreshing, setRefreshing] = React.useState(false);
-  
+
   const onRefresh = React.useCallback(() => {
-      setRefreshing(true);
-      setTimeout(() => setRefreshing(false),4000);
+    setRefreshing(true);
+    setTimeout(() => setRefreshing(false), 4000);
   }, []);
 
   const [currentPage, setCurrentPage] = React.useState(0);
-  
+
   const onStepPress = (position: number) => {
     setCurrentPage(position);
   };
@@ -232,33 +232,44 @@ const Formulario: React.FC = () => {
         style={styles.scrollView}
         behavior={Platform.OS == "ios" ? "padding" : "height"}
         keyboardVerticalOffset={80}>
-        <ScrollView 
-          style={{width:"100%"}}
-          refreshControl={ <RefreshControl
-          refreshing={refreshing}
-          onRefresh={onRefresh}
-            />
+        <ScrollView
+          style={{ height: "100%"}}
+          refreshControl={<RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
           }
         >
-          { currentPage === 0 && (
+          {currentPage === 0 && (
             <ClientForm dataclient={setClient} />
           )}
-          { currentPage === 1 && (
+          {currentPage === 1 && (
             <LinguaForm datalingua={setLingua} />
           )}
-          
-          {/* <Geral datageral={setGeral} />
-          <Auscultacao dataAuscultacao={setAuscultacao} />
-          <Interrogatorio dataformulario={setInterroga} />
-          <Algias dataAlgias={setAlgias} />
-          <Torax datatorax={setTorax} /> */}
-          <View style={styles.button}>
-            <Button
-              title="Enviar"
-              onPress={() => submit()}
-              color="green"
-            />
-          </View>
+          {currentPage === 2 && (
+            <Geral datageral={setGeral} />
+          )}
+          {currentPage === 3 && (
+            <Auscultacao dataAuscultacao={setAuscultacao} />
+          )}
+          {currentPage === 4 && (
+            <Algias dataAlgias={setAlgias} />
+          )}
+          {currentPage === 5 && (
+            <Torax datatorax={setTorax} />
+          )}
+          {currentPage === 6 && (
+            <>
+              <Geral datageral={setGeral} />
+              <View style={styles.button}>
+                <Button
+                  title="Enviar"
+                  onPress={() => submit()}
+                  color="green"
+                />
+              </View>
+            </>
+          )}
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
