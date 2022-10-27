@@ -4,12 +4,13 @@ import ClientForm from '../../components/Client';
 import api from '../../services/api';
 import LinguaForm from '../../components/Lingua';
 import Geral from '../../components/Geral';
-import { Client, IAlgias, IAuscultação, IFormulario, IGeral, ILingua, ITorax } from '../../models';
+import { Client, IAlgias, IAuscultação, IFinal, IFormulario, IGeral, ILingua, ITorax, IInterrogatorio} from '../../models';
 import Interrogatorio from '../../components/Interrogatório';
 import Auscultacao from '../../components/Auscultação';
 import Torax from '../../components/Torax';
 import Algias from '../../components/Algias';
 import Steps from '../../components/Steps';
+import Final from '../../components/Final';
 
 // menstruação mostrar so qd for mulher selecionado
 // tato não obrigatorio
@@ -26,12 +27,13 @@ const Formulario: React.FC = () => {
     estadocivil: "",
     datanascimento: "",
     idCid: 0,
-    createdAt: null,
-    updatedAt: null,
+    createdAt: Date(),
+    updatedAt: Date(),
   });
   const [lingua, setLingua] = useState<ILingua>({
     obs_lingua: "",
-    lingua: 0
+    lingua: 0,
+    basic:[]
   });
   const [geral, setGeral] = useState<IGeral>({
     formpostura: 0,
@@ -41,29 +43,35 @@ const Formulario: React.FC = () => {
     Orelhas: "",
     Labios_input: "",
     Pele: "",
+    basic:[],
   });
   const [torax, setTorax] = useState<ITorax>({
-    Torax: "",
-    Dores_cabeca: "",
+    Torax: 0,
+    Dores_cabeca: 0,
     Obs_torax: "",
     Obs_dorescabe: "",
     Escala_analogdor: "",
+    diagnostico_clinico: "",
+    queixa_prin: "",
+    basic:[]
   });
-  const [algias, setAlgias] = useState<IAlgias>({
+  const [algias, setAlgias] = useState<IAlgias>({ 
     Coluna: 0,
-    Obs_coluna: '',
-    dores_musculares: '',
-    dores_articulares: '',
-    abdome: [],
-    obs_abdome: '',
+    Obs_coluna: "",
+    dores_musculares: "",
+    dores_articulares: "",
+    abdome: "",
+    obs_abdome: "",
+    basic:[],
   });
 
   const [auscultacao, setAuscultacao] = useState<IAuscultação>({
     Fala: 0,
     Respiracao: 0,
     obs_fala: "",
+    basic:[]
   });
-  const [interroga, setInterroga] = useState<IFormulario>({
+  const [interroga, setInterroga] = useState<IInterrogatorio>({
     Tranpiracao: 0,
     Obs_tranpiracao: "",
     Sono: 0,
@@ -91,13 +99,19 @@ const Formulario: React.FC = () => {
     Tato: 0,
     Boca_gosto: 0,
     Obs_bocagosot: "",
-    idCid: 0,
-    Torax: "",
-    Dores_cabeca: "",
-    Obs_torax: "",
-    Obs_dorescabe: "",
-    Escala_analogdor: "",
+    basic:[]
   });
+
+  const [final, setFinal] = useState<IFinal>({ 
+    Neuromuscular: "",
+    Diagnostico_teurapeutico: "", 
+    Objetivo: "",
+    Medicamento: "",
+    Patalogia: "",
+    Condutas: "",
+  });
+  
+  
 
 
 
@@ -179,24 +193,23 @@ const Formulario: React.FC = () => {
         idCid: client.idCid,
         Torax: torax.Torax,
         Dores_cabeca: torax.Torax,
-        Obs_torax: torax.Torax,
-        Obs_dorescabe: torax.Torax,
-        Escala_analogdor: torax.Torax,
-        // Coluna: "String",
-        // Dores_musculares: "String",
-        // Dores_articulares: "String",
-        // Abdome: "String",
-        // Dores_cabeca: "String",
-        // Torax: "String",
-        // Escala_analogdor: "String",
-        // Diagnostico_teurapeutico:"String",
-        // Condutas: "String",
-        // Obs_casa: "String" ,
-        // Obs_mentruacao: "String",
-        // Obs_bocagosot: "String",
-        // Obs_abdome: "String",
-        // Obs_torax: "String",
-        // Objetivo: "String",  
+        Obs_torax: torax.Obs_torax,
+        Obs_dorescabe: torax.Obs_dorescabe,
+        Escala_analogdor: torax.Escala_analogdor,
+        Coluna: algias.Coluna,
+        dores_musculares: algias.dores_musculares,
+        dores_articulares: algias.dores_articulares,
+        abdome: algias.abdome,
+        Diagnostico_teurapeutico: final.Diagnostico_teurapeutico,
+        Condutas: final.Condutas,
+        obs_abdome: algias.obs_abdome,
+        Objetivo: final.Objetivo,
+        Neuromuscular: final.Neuromuscular,
+        Medicamento: final.Medicamento,
+        Patalogia: final.Patalogia,
+        Obs_coluna: algias.Obs_coluna,
+        diagnostico_clinico: torax.diagnostico_clinico,
+        queixa_prin: torax.queixa_prin,
       }
       console.log(payload, "DEU CERTO")
       const responseone = await api.post('/formulario', payload)
@@ -253,14 +266,17 @@ const Formulario: React.FC = () => {
             <Auscultacao dataAuscultacao={setAuscultacao} />
           )}
           {currentPage === 4 && (
-            <Algias dataAlgias={setAlgias} />
+            <Interrogatorio datainterrogatorio={setInterroga} />
           )}
           {currentPage === 5 && (
-            <Torax datatorax={setTorax} />
+            <Algias dataAlgias={setAlgias} />
           )}
           {currentPage === 6 && (
+            <Torax datatorax={setTorax} />
+          )}
+          {currentPage === 7 && (
             <>
-              <Geral datageral={setGeral} />
+              <Final dataFinal={setFinal} />
               <View style={styles.button}>
                 <Button
                   title="Enviar"

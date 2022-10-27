@@ -69,15 +69,19 @@ const Torax: React.FC<Props> = ({ datatorax }) => {
     const [obstorax, setObstorax] = useState("")
     const [obsdorescab, setObsdorescab] = useState("")
     const [escalanalog, setEscalanalog] = useState("")
+    const [diagnostico_clinico, setDiagnostico_clinico] = useState("")
+    const [queixa_prin, setQueixa_prin] = useState("")
     const pickerRef = React.useRef<RNPickerSelect | null>()
 
     useEffect(() => {
         datatorax({
             Torax: 0,
             Dores_cabeca: 0,
-            Obs_torax: '',
-            Obs_dorescabe: '',
-            Escala_analogdor:'',
+            Obs_torax: "",
+            Obs_dorescabe: "",
+            Escala_analogdor: "",
+            diagnostico_clinico: "",
+            queixa_prin: "",
             basic:[],
         } as ITorax)
     }, [])
@@ -136,6 +140,18 @@ const Torax: React.FC<Props> = ({ datatorax }) => {
                     { label: "9", value: "9" },
                     { label: "10", value: "10" },
                 ]}
+            />
+            <TextInput
+                onChangeText={setDiagnostico_clinico}
+                value={diagnostico_clinico}
+                placeholder="Diagnóstico Clínico"
+                style={styles.obs}
+            />
+            <TextInput
+                onChangeText={setQueixa_prin}
+                value={queixa_prin}
+                placeholder="Queixa Princípal"
+                style={styles.obs}
             />
         </View>
     )

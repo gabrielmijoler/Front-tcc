@@ -9,8 +9,8 @@ export interface Client{
         estadocivil: String,
         datanascimento: String,
         idCid: Number,
-        createdAt: Date | null,
-        updatedAt: Date | null,
+        createdAt: String | null,
+        updatedAt: String | null,
 }
 
 export interface ILingua{
@@ -73,22 +73,36 @@ export interface IFormulario{
         Olho_visao: Number,
         Ouvidos_audicao:Number,
         Nariz_olfato:Number,
-        Tato: Number,
+        Tato?: Number,
         Boca_gosto: Number,
         Obs_bocagosot: String,
         idCid: Number,
-        Torax: String,
-        Dores_cabeca: String,
+        Torax: Number,
+        Dores_cabeca: Number,
         Obs_torax: String,
         Obs_dorescabe: String,
-        Escala_analogdor: String
+        Escala_analogdor: String,
+        Coluna: Number,
+        Obs_coluna: String,
+        dores_musculares: String,
+        dores_articulares: String,
+        abdome: String,
+        obs_abdome: String,
+        Neuromuscular: String,
+        Diagnostico_teurapeutico: String, 
+        Objetivo: String,
+        Medicamento: String,
+        Patalogia: String,
+        Condutas: String,
+        diagnostico_clinico: String,
+        queixa_prin: String,
 } 
 export interface IBasicArray{
         id:Number,
         name: String,
         value:String,
         checked: boolean
-    }
+}
 export interface IAlgias{
         Coluna: Number,
         Obs_coluna: String,
@@ -104,8 +118,10 @@ export interface ITorax{
         Obs_torax: String,
         Obs_dorescabe: String,
         Escala_analogdor: String,
+        diagnostico_clinico: String,
+        queixa_prin: String,
         basic: IBasicArray[],
-}
+}       
 export interface IFinal{
         Neuromuscular: String,
         Diagnostico_teurapeutico: String, 
@@ -114,12 +130,37 @@ export interface IFinal{
         Patalogia: String,
         Condutas: String,
 }
-export interface IDgclinicos{
-        diagnostico_clinico: String,
-        queixa_prin: String,
+
+export interface IInterrogatorio{
+        Tranpiracao: Number,
+        Obs_tranpiracao: String,
+        Sono: Number,
+        Obs_sono: String,
+        Emocoes: Number,
+        Obs_emocoes: String,
+        Cor: Number,
+        Estacao: Number,
+        Alimentacao: Number,
+        Obs_alimentacao: String,
+        Sabores: Number,
+        Obs_sabores: String,
+        Sede: Number,
+        Obs_sede: String,
+        Disfuncoes_gastrointestinais: Number,
+        Obs_disfuncoes: String,
+        Excrecoes: Number,
+        Excrecoes2: Number,
+        Obs_excrecoes: String,
+        Menstruacao: Number,
+        Obs_mentruacao: String,
+        Olho_visao: Number,
+        Ouvidos_audicao: Number,
+        Nariz_olfato: Number,
+        Tato?: Number,
+        Boca_gosto: Number,
+        Obs_bocagosot: String,
+        basic:[]
 }
 
-
         //     idPalpacao: 
-        //     geralformpostura: 
                 

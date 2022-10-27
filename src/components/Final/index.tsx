@@ -57,23 +57,16 @@ const Final: React.FC<Props> = ({dataFinal}) => {
     const [patalogia, setPatalogia] = useState("");
     const [condutas, setCondutas] = useState("");
     
-    // useEffect(()=>{
-    //     dataclient({
-    //     Neuromuscular: neuromuscular,
-    //     Diagnostico_teurapeutico: diagnosticoteurapeutico, 
-    //     Objetivo: objetivo,
-    //     Medicamento: medicamento,
-    //     Patalogia: patalogia,
-    //     Condutas: condutas,
-    //     }as IFinal)
-    // }, [
-        // neuromuscular
-        // diagnosticoteurapeutico
-        // objetivo
-        // medicamento
-        // patalogia
-        // condutas
-    // ])
+    useEffect(()=>{
+        dataFinal({
+        Neuromuscular: '',
+        Diagnostico_teurapeutico: '', 
+        Objetivo: '',
+        Medicamento: '',
+        Patalogia: '',
+        Condutas: '',
+        }as IFinal)
+    }, [])
     return (
         <View>
             <Text style={styles.text}>Teste Neuromuscular Bioenergético (Constitucional, O-Ring Test, Cinesiologia  Aplicada)</Text>
