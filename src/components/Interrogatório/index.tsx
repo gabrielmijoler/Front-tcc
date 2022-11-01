@@ -306,7 +306,6 @@ const Interrogatorio: React.FC<Props> = ({datainterrogatorio}) => {
                         );
                 })}
             <Text style={styles.title}>Estação</Text>
-            <Text>Primavera</Text>
                 {estacao.map((item) => {
                     return (
                         <View key={`${item.id}`}>

@@ -43,11 +43,14 @@ const styles = StyleSheet.create({
     },
     dataComponent:{
         width:350,
-        margin:20,
+        margin:20,  
     },
     obs:{
         backgroundColor: '#d3d3d3',
-    }
+    },
+    // scroll: {
+    //     overflow-y: scroll;
+    // },
 });
 interface Props{
     dataclient: (data: Client)=> void
@@ -147,7 +150,7 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
     ])
 
     return (
-        <View>
+        <View >
             <Text style={styles.text}>Nome Completo</Text>
             <TextInput
                 style={styles.input}
@@ -164,7 +167,7 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
                     }
                 }
                 value={email}
-                keyboardType="email-address"
+                keyboardType="email-address"    
                 placeholder="teste@hotmail.com"
             />
             <Text>{errorEmail}</Text>

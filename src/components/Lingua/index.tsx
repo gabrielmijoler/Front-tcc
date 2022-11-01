@@ -16,6 +16,11 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginTop: 10
     },
+    scroll: {
+           overflow: 'scroll',
+    },
+    
+
 });
 
 interface Props{
@@ -49,7 +54,7 @@ const Lingua: React.FC<Props>= ({datalingua}) => {
         obs
     ])
     return (
-        <View>
+        <View style={styles.scroll}>
             <Text style={styles.title}>Língua.</Text>
                 {lingua.map((item) => {
                         return (

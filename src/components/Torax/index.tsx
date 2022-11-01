@@ -47,7 +47,11 @@ const styles = StyleSheet.create({
     },
     obs: {
         backgroundColor: '#d3d3d3',
-    }
+    },
+    scroll: {
+           overflow: 'scroll',
+    },
+
 });
 interface Props {
     datatorax: (data: ITorax) => void
@@ -87,7 +91,7 @@ const Torax: React.FC<Props> = ({ datatorax }) => {
     }, [])
 
     return (
-        <View>
+        <View style={styles.scroll}>
             <Text style={styles.text}>Tórax</Text>
                 {torax.map((item) => {
                         return (
