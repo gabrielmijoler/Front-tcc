@@ -199,9 +199,23 @@ const Interrogatorio: React.FC<Props> = ({datainterrogatorio}) => {
         { id: 6, name: 'Boca amarga (Qi perverso calor/umidade em F e VB)', value: 'Boca amarga (Qi perverso calor/umidade em F e VB)', checked: false },
         { id: 7, name: 'Sangramentos (def. de Qi do BP)', value: 'Sangramentos (def. de Qi do BP)', checked: false },
         { id: 8, name: 'Lábios azulados (estase de Xue do C)', value: 'Lábios azulados (estase de Xue do C)', checked: false }
-        
     ]);
     const [bocgostoobs, setBocgostoobs] = useState("");
+
+    const Check = (givenId: Number) => {
+        let updatedUserList = [...bocagosto]
+        const objIndex = updatedUserList.findIndex(user => user.id == givenId);
+        updatedUserList[objIndex].checked = !updatedUserList[objIndex].checked;
+        setTranspiracao(updatedUserList)
+    }
+    const monstrarid = (id: any) => {
+        console.log(id);
+        transpiracao.map(checked => {
+          if (id === checked.id) {
+            setTranspiracao((prev: any) => [...prev, id]);
+          }
+        });
+      };
 
     useEffect(()=>{
         datainterrogatorio({
@@ -234,18 +248,27 @@ const Interrogatorio: React.FC<Props> = ({datainterrogatorio}) => {
             Obs_bocagosot: '',
             basic:[]
         }as IInterrogatorio)
-    }, [])
+    }, [] )
 
+
+        // const listItems = transpiracao.findIndex((item) =>
+        //   item.id == id ? { ...item, checked: !item.checked } : item
+        // );
+        // setTranspiracao(transpiracao);
+        // console.log(listItems)
+    
+    
     return (
         <View>
             <Text style={styles.title}>Interrogatório</Text>
             <Text style={styles.subtitle}>Transpiração</Text>
-            <Text>Sua pouco (normal)</Text>
                 {transpiracao.map((item) => {
                     return (
                         <View key={`${item.id}`}>
                             <Text style={styles.text} children={item.name}></Text>
                             <CheckBox
+                                onChange={()=> monstrarid(item.id)}
+                                onCheckColor='red'
                                 onValueChange={() => item.checked = !item.checked}
                             />
                         </View>
@@ -446,7 +469,10 @@ const Interrogatorio: React.FC<Props> = ({datainterrogatorio}) => {
                             <View key={`${item.id}`}>
                                 <Text style={styles.text} children={item.name}></Text>
                                 <CheckBox
+                                    value={item.checked}  
                                     onValueChange={() => item.checked = !item.checked}
+                                    tintColors={{ true: '#F15927', false: 'black' }}
+                                    onCheckColor={'#6F763F'}
                                 />
                             </View>
                         );
@@ -468,7 +494,7 @@ const Interrogatorio: React.FC<Props> = ({datainterrogatorio}) => {
                             <View key={`${item.id}`}>
                                 <Text style={styles.text} children={item.name}></Text>
                                 <CheckBox
-                                    onValueChange={() => item.checked = !item.checked}
+                                    onValueChange={() => item.checked === !item.checked }
                                 />
                             </View>
                         );
@@ -484,6 +510,7 @@ const Interrogatorio: React.FC<Props> = ({datainterrogatorio}) => {
                                 />
                             </View>
                         );
+                        
                 })}
             <Text>Observação - Órgão dos sentidos</Text>
             <TextInput
@@ -493,7 +520,8 @@ const Interrogatorio: React.FC<Props> = ({datainterrogatorio}) => {
                 style={styles.obs}
             />
         </View>
-    )
+  );
+  
 }
 
 export default Interrogatorio;
