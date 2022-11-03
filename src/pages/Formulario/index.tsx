@@ -11,7 +11,6 @@ import Torax from '../../components/Torax';
 import Algias from '../../components/Algias';
 import Steps from '../../components/Steps';
 import Final from '../../components/Final';
-
 // menstruação mostrar so qd for mulher selecionado
 // tato não obrigatorio
 

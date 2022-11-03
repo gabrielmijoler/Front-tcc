@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import Formulario from './src/pages/Formulario';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import TableUser from './src/components/TableUsers';
+
+const Stack = createNativeStackNavigator();
 
 // import {AuthProvider} from './context/auth';
 // import Routes from './routes/index';
@@ -12,6 +16,9 @@ const App: React.FC = () => {
     return (
     <NavigationContainer>
         <Formulario/>
+        <Stack.Navigator>
+          <Stack.Screen name="listauser" component={TableUser} />
+        </Stack.Navigator>
     </NavigationContainer>
     );
 };

@@ -162,5 +162,10 @@ export interface IInterrogatorio{
         basic:[]
 }
 
+export interface IListauser {
+        navigation: any
+        screenName: any
+    }
+
         //     idPalpacao: 
                 
