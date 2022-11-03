@@ -210,11 +210,11 @@ const Interrogatorio: React.FC<Props> = ({datainterrogatorio}) => {
     }
     const monstrarid = (id: any) => {
         console.log(id);
-        transpiracao.map(checked => {
-          if (id === checked.id) {
-            setTranspiracao((prev: any) => [...prev, id]);
-          }
-        });
+        let updatedUserList = [...transpiracao]
+        const objIndex = updatedUserList.findIndex(user => user.id == id);
+        updatedUserList[objIndex].checked = !updatedUserList[objIndex].checked;
+        setTranspiracao(updatedUserList)
+        console.log(updatedUserList)
       };
 
     useEffect(()=>{
@@ -262,18 +262,20 @@ const Interrogatorio: React.FC<Props> = ({datainterrogatorio}) => {
         <View>
             <Text style={styles.title}>Interrogatório</Text>
             <Text style={styles.subtitle}>Transpiração</Text>
-                {transpiracao.map((item) => {
+                <View>{ transpiracao.length > 0 &&
+                transpiracao.map((item) => {
                     return (
                         <View key={`${item.id}`}>
                             <Text style={styles.text} children={item.name}></Text>
                             <CheckBox
-                                onChange={()=> monstrarid(item.id)}
-                                onCheckColor='red'
-                                onValueChange={() => item.checked = !item.checked}
-                            />
+                                onValueChange={()=> monstrarid(item.id)}
+                                value={item.checked}
+                                onCheckColor="#eee"
+                                />
                         </View>
                     );
                 })}
+                </View>
             <Text>Horário:</Text>
             <TextInput
                 onChangeText={setTranobs}
@@ -282,16 +284,19 @@ const Interrogatorio: React.FC<Props> = ({datainterrogatorio}) => {
                 style={styles.obs}
             />
             <Text style={styles.title}>Sono</Text>
-                {sono.map((item) => {
+                <View>{ sono.length > 0 &&
+                sono.map((item) => {
                     return (
                         <View key={`${item.id}`}>
                             <Text style={styles.text} children={item.name}></Text>
                             <CheckBox
-                                onValueChange={() => item.checked = !item.checked}
+                                onValueChange={() => {item.checked = !item.checked; console.log(item.id)}}
+                                value={item.checked}
                             />
                         </View>
                     );
                 })}
+                </View>
             <Text>Observação</Text>
             <TextInput
                 onChangeText={setSonobsr}
