@@ -14,11 +14,14 @@ const Stack = createNativeStackNavigator();
 
 const App: React.FC = () => {
     return (
-    <NavigationContainer>
-        <Formulario/>
-        <Stack.Navigator>
-          <Stack.Screen name="listauser" component={TableUser} />
-        </Stack.Navigator>
+      <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={TableUser}
+          options={{ title: 'Welcome' }}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
     );
 };
