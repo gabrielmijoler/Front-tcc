@@ -1,31 +1,72 @@
+// // import * as React from 'react';
+// // import { NavigationContainer } from '@react-navigation/native';
+// // // import Formulario from './src/pages/Formulario';
+
+// // import TableUser from './src/components/TableUsers';
+
+
+// // const App: React.FC = () => {
+// //     return (
+// //       <NavigationContainer>
+// //         <TableUser/>
+// //       </NavigationContainer>
+// //     );
+// // };
+
+// // export default App;
+
+
 // import * as React from 'react';
+// import { Button, View } from 'react-native';
+// import { createDrawerNavigator } from '@react-navigation/drawer';
 // import { NavigationContainer } from '@react-navigation/native';
-// // import Formulario from './src/pages/Formulario';
+// import 'react-native-gesture-handler';
 
-// import TableUser from './src/components/TableUsers';
+// type Navegation = {
+//   navigation: any;
+// }
 
+// const HomeScreen: React.FC <Navegation>=({ navigation}) => {
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Button
+//         onPress={() => navigation.navigate('Notifications')}
+//         title="Go to notifications"
+//       />
+//     </View>
+//   );
+// }
 
-// const App: React.FC = () => {
-//     return (
-//       <NavigationContainer>
-//         <TableUser/>
-//       </NavigationContainer>
-//     );
-// };
+// const NotificationsScreen: React.FC <Navegation>= ({ navigation})=> {
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Button onPress={() => navigation.goBack()} title="Go back home" />
+//     </View>
+//   );
+// }
+
+// const Drawer = createDrawerNavigator();
+
+// const App: React.FC = ()=> {
+//   return (
+//     <NavigationContainer>
+//       <Drawer.Navigator initialRouteName="Home">
+//         <Drawer.Screen name="Home" component={HomeScreen} />
+//         <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+//       </Drawer.Navigator>
+//     </NavigationContainer>
+//   );
+// }
 
 // export default App;
-
 
 import * as React from 'react';
 import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 
-type Navegation = {
-  navigation: any;
-}
 
-const HomeScreen: React.FC <Navegation>=({ navigation}) => {
+function HomeScreen(navigation:any) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button
@@ -36,7 +77,7 @@ const HomeScreen: React.FC <Navegation>=({ navigation}) => {
   );
 }
 
-const NotificationsScreen: React.FC <Navegation>= ({ navigation})=> {
+function NotificationsScreen( navigation:any ) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button onPress={() => navigation.goBack()} title="Go back home" />
@@ -46,15 +87,13 @@ const NotificationsScreen: React.FC <Navegation>= ({ navigation})=> {
 
 const Drawer = createDrawerNavigator();
 
-const App: React.FC = ()=> {
+export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Navigator useLegacyImplementation initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="Notifications" component={NotificationsScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
 }
-
-export default App;

@@ -41,6 +41,7 @@
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^26.0.23",
+    "@types/react": "^18.0.25",
     "@types/react-native": "^0.67.3",
     "@types/react-native-datepicker": "^1.7.1",
     "@types/react-native-table-component": "^1.2.4",
