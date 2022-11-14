@@ -14,7 +14,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import { name as appName } from './app.json';
 import App from './App';
 
-export default function Main() {
+export default function App() {
   return (
     <PaperProvider>
       <App />
@@ -22,4 +22,4 @@ export default function Main() {
   );
 }
 
-AppRegistry.registerComponent(appName, () => Main);
+AppRegistry.registerComponent(appName, () => App);
