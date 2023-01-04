@@ -108,7 +108,6 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
         return !error
       }
     useEffect(() => {
-        validar();
         const getcid = async () => {
             try {
                 const response = await api.get('/cid')
@@ -250,25 +249,16 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
             /> */}
 
             <Text style={styles.text}>Sexo</Text>
-                {/* <RNPickerSelect
-                    // items={[
-                    //     {sexox.map((item)=>{
-                            
-                        
-                    // }]}
-                    items={sexox}
-                    ref={r => pickerRef.current = r}
-                    value={sexo}
-                    placeholder={{ label: '-- -- --' }}
-                    onValueChange={(item) => sexox.map(item)}
-                /> */}
-            {/* <TextInput
-                style={styles.input}
-                onChangeText={setSexo}
-                value={sexo}
-                placeholder="Masculino, Feminino, Outros"
-                keyboardType="default"
-            /> */}
+            <RNPickerSelect
+                ref={r => pickerRef.current = r}
+                value={3}
+                placeholder={{ label: '3', value: '3' }}
+                onValueChange={() => console.log('cahnge')}
+                items={[
+                    { label: "Masculino", value: "Masculino" },
+                    { label: "Femenino", value: "Femenino" },
+                ]}
+            />
             <Text style={styles.text}>Estado Civil</Text>
             <TextInput
                 style={styles.input}
