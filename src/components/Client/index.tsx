@@ -62,7 +62,6 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [errorEmail, setErrorEmail] = useState("")
-    const [sexo, setSexo] = useState("");
     const [cpf, setCpf] = useState("");
     const [errorCpf, setErrorCpf] = useState(null || "");
     const [telefone, setTelefone] = useState("");
@@ -75,10 +74,12 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
     const [itemCompaniesSelect, setItemCompaniesSelect] = useState<any>([]);
     const [optionSelected, setOptionSelected] = useState<any>();
     const [isOpen, setIsOpen] = useState(false);
-    const [sexox, setSexox] = useState<IArraySelect[]>([
-        {key:'MASCULINO', label:' MASCULINO', value:1},
-        {key:'FEMININO', label:'FEMININO', value:2},
-        {key:'OUTROS', label:'OUTROS', value:3}
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [sexo, setSexo] = useState([
+        {label: 'MASCULINO', value: 'MASCULINO'},
+        {label: 'FEMININO', value: 'FEMININO'},
+        {label: 'OUTROS', value: 'OUTROS'}
     ]);
 
     const [selecionadosexo, setSelecionadosexo] = useState([]);
@@ -91,6 +92,7 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
         let error = false
         setErrorEmail('')
         setErrorCpf('')
+        // setEmail(email.includes('@'));
 
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         if (!re.test((email).toLowerCase())){
@@ -131,7 +133,7 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
         dataclient({
             nome:name,
             email: email,
-            sexo: sexo,
+            sexo: [],
             cpf: cpf,
             profissao: prof,
             telefone: telefone,
@@ -180,7 +182,7 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
             <Text>{errorEmail}</Text>
             <Text style={styles.text}>CPF</Text>
             <TextInputMask
-                placeholder="CPF"
+                placeholder="000.000.000-00"
                 type={'cpf'}
                 value={cpf}
                 onChangeText={value => {
@@ -199,7 +201,7 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
             <Text>{errorCpf}</Text>
             <Text style={styles.text}>Telefone</Text>
             <TextInputMask
-            placeholder="Telefone"
+            placeholder="(11)99999-0000"
             type={'cel-phone'}
             options={{
                 maskType: 'BRL',
@@ -215,6 +217,7 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
             keyboardType="phone-pad"
             returnKeyType="done"
             ref={(ref) => telefoneField = ref}
+            style={styles.input}
             />
             {/* <DatePicker
                 style={{width: 200}}
@@ -247,17 +250,17 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
                 showYearDropdown // year show and scrolldown alos
                 scrollableYearDropdown
             /> */}
-
+            
             <Text style={styles.text}>Sexo</Text>
-            <RNPickerSelect
-                ref={r => pickerRef.current = r}
-                value={3}
-                placeholder={{ label: '3', value: '3' }}
-                onValueChange={() => console.log('cahnge')}
-                items={[
-                    { label: "Masculino", value: "Masculino" },
-                    { label: "Femenino", value: "Femenino" },
-                ]}
+            <DropDownPicker
+                style={styles.select}
+                open={open}
+                value={value}
+                items={sexo}
+                setOpen={setOpen}
+                setValue={setValue}
+                setItems={setSexo}
+                placeholder={' --  --  --'}
             />
             <Text style={styles.text}>Estado Civil</Text>
             <TextInput
@@ -300,11 +303,11 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
                     borderBottomColor: "#dfdfdf",
                 }}
                 style={styles.select}
-                dropDownContainerStyle={{
-                    backgroundColor:'#dfdfdf',
-                    width: 370,
-                    margin: 12
-                }}
+                // dropDownContainerStyle={{
+                //     backgroundColor:'#dfdfdf',
+                //     width: 370,
+                //     margin: 12
+                // }}
             />
         </View>
     )

@@ -18,7 +18,7 @@ const Formulario: React.FC = () => {
   const [client, setClient] = useState<Client>({
     nome: "",
     email: "",
-    sexo: "",
+    sexo: [],
     cpf: "",
     profissao: "",
     telefone: "",
@@ -28,7 +28,6 @@ const Formulario: React.FC = () => {
     idCid: 0,
     createdAt: Date(),
     updatedAt: Date(),
-    selectarray:[],
   });
   const [lingua, setLingua] = useState<ILingua>({
     obs_lingua: "",

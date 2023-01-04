@@ -1,7 +1,7 @@
 export interface Client{
         nome: String,
         email: String,
-        sexo: String,
+        sexo: [],
         cpf: String,
         profissao: String,
         telefone: String,
@@ -11,7 +11,6 @@ export interface Client{
         idCid: Number,
         createdAt: String | null,
         updatedAt: String | null,
-        selectarray: IArraySelect[],
 }
 
 export interface ILingua{
