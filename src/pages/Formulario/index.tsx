@@ -28,6 +28,7 @@ const Formulario: React.FC = () => {
     idCid: 0,
     createdAt: Date(),
     updatedAt: Date(),
+    selectarray:[],
   });
   const [lingua, setLingua] = useState<ILingua>({
     obs_lingua: "",
@@ -147,7 +148,6 @@ const Formulario: React.FC = () => {
 
 
   const submit = async () => {
-    const [refreshing, setRefreshing] = React.useState(false);
     try {
       const payload: IFormulario = {
         formpostura: geral.formpostura,
@@ -218,6 +218,14 @@ const Formulario: React.FC = () => {
     } catch (error) {
       console.log('err', error)
     }
+
+    // setAlgias('');
+    // setAuscultacao('');
+    // setFinal('');
+    // setGeral('');
+    // setInterroga('');
+    // setLingua('');
+    // setTorax('');
   }
 
   const [refreshing, setRefreshing] = React.useState(false);
