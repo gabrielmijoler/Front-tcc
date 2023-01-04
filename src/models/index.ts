@@ -11,6 +11,7 @@ export interface Client{
         idCid: Number,
         createdAt: String | null,
         updatedAt: String | null,
+        selectarray: IArraySelect[],
 }
 
 export interface ILingua{
@@ -102,6 +103,11 @@ export interface IBasicArray{
         name: String,
         value:String,
         checked: boolean
+}
+export interface IArraySelect{
+        key:String,
+        label:String,
+        value:Number,
 }
 export interface IAlgias{
         Coluna: Number,

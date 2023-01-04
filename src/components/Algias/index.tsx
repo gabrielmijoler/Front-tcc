@@ -12,19 +12,6 @@ const styles = StyleSheet.create({
         padding: 10,
         colors: "#000",
     },
-    container: {
-        flex: 1,
-        alignItems: 'center',
-    },
-    button: {
-        backgroundColor: 'green',
-        padding: 10,
-        borderRadius: 6,
-        marginTop: 50,
-    },
-    fail: {
-        color: '#dc3545',
-    },
     select: {
         minHeight: 40,
         backgroundColor: '#dfdfdf',
@@ -37,16 +24,14 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginTop: 10
     },
-    dataComponent: {
-        width: 350,
-        margin: 20,
-    },
     title: {
-        marginTop:10,
+        marginTop: 10,
         fontSize: 20,
     },
     obs:{
         backgroundColor: '#d3d3d3',
+        borderRadius: 20,
+        borderColor: '#eeeeee'
     }
 });
 interface Props{
@@ -82,7 +67,17 @@ const Algias: React.FC<Props> = ({ dataAlgias }) => {
     const [obscoluna, setObscoluna] = useState("");
     const [obsabdome, setObsabdome] = useState("");
     
+    // setColuna([]);
+    // setDoresmusculares([]);
+    // setDoresarticulares([]);
+    // setAbdome([]);
+    // setObscoluna('');
+    // setObsabdome('');
+    
     useEffect(()=>{
+        setAbdome([]);
+        setObsabdome('');
+        setObscoluna('');
         dataAlgias({
             Coluna: 0,
             Obs_coluna: '',
@@ -96,7 +91,7 @@ const Algias: React.FC<Props> = ({ dataAlgias }) => {
     
 
     return (
-        <View>
+        <View style={{overflow: 'scroll'}}>
             <Text style={styles.text}>Dores na Coluna</Text>
                 {coluna.map((item) => {
                     return (

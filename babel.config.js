@@ -8,10 +8,9 @@ module.exports = {
         'react-native-gesture-handler',
         'react-native-vector-icons',
         {
-          extensions: [".tsx", ".ts", ".js", ".json"],
+          extensions: ['.tsx', '.ts', '.js', '.json'],
         },
       ],
-      
     },
   },
 };

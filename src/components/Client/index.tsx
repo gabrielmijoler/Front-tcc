@@ -2,10 +2,11 @@ import { View, Text, StyleSheet, TextInput} from 'react-native';
 import React, { createRef, useEffect, useState } from 'react';
 import api from '../../services/api';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { Client } from '../../models';
+import { Client, IArraySelect, IBasicArray } from '../../models';
 import DatePicker from 'react-native-datepicker';
 import RNPickerSelect from 'react-native-picker-select'
 import { TextInputMask } from 'react-native-masked-text'
+import Picker from 'react-native-picker-select';
 
 const styles = StyleSheet.create({
     input: {
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#dfdfdf',
         width: 373,
         margin: 12,
-        
+
     },
     text: {
         color: '#000',
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     },
     dataComponent:{
         width:350,
-        margin:20,  
+        margin:20,
     },
     obs:{
         backgroundColor: '#d3d3d3',
@@ -65,7 +66,7 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
     const [cpf, setCpf] = useState("");
     const [errorCpf, setErrorCpf] = useState(null || "");
     const [telefone, setTelefone] = useState("");
-    const [errorTelefone, setErrorTelefone] = useState(null || "" ) 
+    const [errorTelefone, setErrorTelefone] = useState(null || "" )
     const [data, setData] = useState("");
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [cvstatus, setCvstatus] = useState("");
@@ -74,7 +75,12 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
     const [itemCompaniesSelect, setItemCompaniesSelect] = useState<any>([]);
     const [optionSelected, setOptionSelected] = useState<any>();
     const [isOpen, setIsOpen] = useState(false);
-    const [sexox, setSexox] = useState(['MASCULINO', 'FEMININO', 'OUTROS']);
+    const [sexox, setSexox] = useState<IArraySelect[]>([
+        {key:'MASCULINO', label:' MASCULINO', value:1},
+        {key:'FEMININO', label:'FEMININO', value:2},
+        {key:'OUTROS', label:'OUTROS', value:3}
+    ]);
+
     const [selecionadosexo, setSelecionadosexo] = useState([]);
     const pickerRef = React.useRef<RNPickerSelect | null>()
 
@@ -85,7 +91,7 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
         let error = false
         setErrorEmail('')
         setErrorCpf('')
-        
+
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         if (!re.test((email).toLowerCase())){
           setErrorEmail('Preencha seu e-mail corretamente')
@@ -93,15 +99,16 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
         }
         if (!ref_cpf.current()){
           setErrorCpf("Preencha seu CPF corretamente")
-          error = true  
+          error = true
         }
         if (telefone == null){
-          setErrorTelefone("Preencha seu telefone corretamente")
+          setErrorTelefone("Preencha seu telefone")
           error = true
         }
         return !error
       }
     useEffect(() => {
+        validar();
         const getcid = async () => {
             try {
                 const response = await api.get('/cid')
@@ -135,6 +142,7 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
             idCid: optionSelected,
             createdAt: null,
             updatedAt: null,
+            selectarray:[],
         }as Client)
     }, [
         sexo,
@@ -167,22 +175,23 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
                     }
                 }
                 value={email}
-                keyboardType="email-address"    
+                keyboardType="email-address"
                 placeholder="teste@hotmail.com"
             />
             <Text>{errorEmail}</Text>
             <Text style={styles.text}>CPF</Text>
-            <TextInputMask 
+            <TextInputMask
                 placeholder="CPF"
                 type={'cpf'}
                 value={cpf}
                 onChangeText={value => {
                     setCpf(value)
                     setErrorCpf("")
+                    validar()
                     }
                 }
                 style={styles.input}
-                keyboardType="number-pad" 
+                keyboardType="number-pad"
                 returnKeyType='done'
                 // errorMenssage={errorCpf}
                 maxLength={14}
@@ -204,10 +213,10 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
                 setErrorTelefone('')
                 }
             }
-            keyboardType="phone-pad"  
-            returnKeyType="done"    
+            keyboardType="phone-pad"
+            returnKeyType="done"
             ref={(ref) => telefoneField = ref}
-            />      
+            />
             {/* <DatePicker
                 style={{width: 200}}
                 date={data}
@@ -239,34 +248,27 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
                 showYearDropdown // year show and scrolldown alos
                 scrollableYearDropdown
             /> */}
-            {/* <Picker
-                selectedValue={selecionadosexo}
-                onValueChange={(itemValue:any) => setSelecionadosexo(itemValue)}
-                >
-                    {
-                        sexox.map(cr => {
-                            return <Picker.item label={cr} value={cr} />
-                        })
-                    }
-            </Picker> */}
-            <RNPickerSelect
-                ref={r => pickerRef.current = r}
-                value={3}
-                placeholder={{ label: '3', value: '3' }}
-                onValueChange={() => console.log('change')}
-                items={[
-                    { label: "Masculino", value: "Masculino" },
-                    { label: "Femenino", value: "Femenino" },
-                ]}
-            />
+
             <Text style={styles.text}>Sexo</Text>
-            <TextInput
+                {/* <RNPickerSelect
+                    // items={[
+                    //     {sexox.map((item)=>{
+                            
+                        
+                    // }]}
+                    items={sexox}
+                    ref={r => pickerRef.current = r}
+                    value={sexo}
+                    placeholder={{ label: '-- -- --' }}
+                    onValueChange={(item) => sexox.map(item)}
+                /> */}
+            {/* <TextInput
                 style={styles.input}
                 onChangeText={setSexo}
                 value={sexo}
                 placeholder="Masculino, Feminino, Outros"
                 keyboardType="default"
-            />
+            /> */}
             <Text style={styles.text}>Estado Civil</Text>
             <TextInput
                 style={styles.input}
