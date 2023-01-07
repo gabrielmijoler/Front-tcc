@@ -77,13 +77,10 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [sexo, setSexo] = useState([
-        {label: 'MASCULINO', value: 'MASCULINO'},
-        {label: 'FEMININO', value: 'FEMININO'},
-        {label: 'OUTROS', value: 'OUTROS'}
+        {key:1, label: 'MASCULINO', value: 'MASCULINO'},
+        {key:2, label: 'FEMININO', value: 'FEMININO'},
+        {key:3, label: 'OUTROS', value: 'OUTROS'}
     ]);
-
-    const [selecionadosexo, setSelecionadosexo] = useState([]);
-    const pickerRef = React.useRef<RNPickerSelect | null>()
 
     let ref_cpf = createRef<any>();
     let telefoneField = null
@@ -130,6 +127,17 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
     }, [])
 
     useEffect(()=>{
+        // setCpf('');
+        // setCvstatus('');
+        // setData('');
+        // setEmail('');
+        // setName('');
+        // setProf('');
+        // setRelig('');
+        // setSexo([]);
+        // setTelefone('');
+        // setItemCompaniesSelect([]);
+
         dataclient({
             nome:name,
             email: email,
@@ -143,7 +151,6 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
             idCid: optionSelected,
             createdAt: null,
             updatedAt: null,
-            selectarray:[],
         }as Client)
     }, [
         sexo,
@@ -155,7 +162,6 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
         cvstatus,
         prof,
         relig,
-        optionSelected,
     ])
 
     return (
@@ -242,15 +248,6 @@ const ClientForm: React.FC<Props> = ({dataclient}) => {
                 }}
                 onDateChange={(data) => {setData}}
             /> */}
-            {/* <DatePicker
-                selected={selectedDate}
-                onChange={date => setSelectedDate(date)}
-                placeholderText={'dd/mm/yyyy'}
-                filterDate={(date:any) => date.getDay() !== 6 && date.getDay() !== 0} // weekends cancel
-                showYearDropdown // year show and scrolldown alos
-                scrollableYearDropdown
-            /> */}
-            
             <Text style={styles.text}>Sexo</Text>
             <DropDownPicker
                 style={styles.select}

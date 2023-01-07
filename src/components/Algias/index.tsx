@@ -75,9 +75,9 @@ const Algias: React.FC<Props> = ({ dataAlgias }) => {
     // setObsabdome('');
     
     useEffect(()=>{
-        setAbdome([]);
-        setObsabdome('');
-        setObscoluna('');
+        // setAbdome([]);
+        // setObsabdome('');
+        // setObscoluna('');
         dataAlgias({
             Coluna: 0,
             Obs_coluna: '',
