@@ -1,6 +1,5 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import api from '../../services/api';
 import { IAlgias, IBasicArray } from '../../models';
 import CheckBox from '@react-native-community/checkbox';
 

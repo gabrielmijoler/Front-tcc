@@ -43,6 +43,7 @@ const Lingua: React.FC<Props>= ({datalingua}) => {
         { id: 12, name: 'Púrpura ou violácea (estase de Xue)', value: 'Púrpura ou violácea (estase de Xue)', checked: false },
     ])
     const [obs, setObs] = useState("");
+    
     useEffect(()=>{
         datalingua({
             lingua: 0,
