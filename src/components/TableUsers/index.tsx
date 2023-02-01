@@ -82,23 +82,21 @@ const TableUser: React.FC = () => {
           const list: any = [];
           if (response.data) {
               response.data.map((item:any) => {
-                const { id, cpf, nome } = item;
-                list.push(
-                <DataTable.Row key={id}>
-                    <DataTable.Cell >{nome}            </DataTable.Cell>
-                    <DataTable.Cell>{cpf}              </DataTable.Cell>
-                    <DataTable.Cell>EDITAR             </DataTable.Cell>
-                </DataTable.Row>
-                )
+                const { id, cpf, nome } = item;  // desustruração do obejto banco
+                list.push({ // pega os dados do objetos do array e cria um novo objeto com os dados q eu quero
+                  id,
+                  cpf,
+                  nome
+                })
               });
+              console.log(list)
               setUserlist(list);
             }
       } catch (error) {
-          console.log('err', error)
+        console.log('err', error)
       }
-  }
+    }
     getuser()
-    console.log(setUserlist)
     // setPage(0);
   }, []);
 
@@ -114,13 +112,28 @@ const TableUser: React.FC = () => {
       <SafeAreaView style={styles.container}>
         <DataTable>
           <DataTable.Header>
-            {columns.map((column, idx) => (
+            {columns.map((column) => (
               <DataTable.Title key={column}>{column}</DataTable.Title>
             ))}
           </DataTable.Header>
-          <DataTable.Row 
+            { userlist.length > 0 ? 
+              userlist.map((user: any, idx: number) => ( // aqui mapeio o objeto desajado e mostra os dados
+                <DataTable.Row key={idx}>
+                  <DataTable.Cell >{user?.nome}</DataTable.Cell>
+                  <DataTable.Cell>{user?.cpf}</DataTable.Cell>
+                  <DataTable.Cell>EDITAR</DataTable.Cell>
+                </DataTable.Row>
+              ))
+            : (
+              <DataTable.Row >
+                 <DataTable.Title >Taqbela vazia</DataTable.Title>
+              </DataTable.Row>
+            )}
+       
+         
+          {/* <DataTable.Row 
             children={userlist}
-          />
+          /> */}
             
           {/* <DataTable.Pagination
             page={page}
