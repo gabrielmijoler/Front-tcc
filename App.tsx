@@ -73,6 +73,7 @@
 
 import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
+import TableForm from './src/components/TableForm';
 import TableUser from './src/components/TableUsers';
 import Formulario from './src/pages/Formulario';
 
@@ -80,7 +81,7 @@ const MusicRoute = () => <Formulario/>;
 
 const AlbumsRoute = () => <TableUser/>;
 
-const RecentsRoute = () => <Text>Recents</Text>;
+const RecentsRoute = () => <TableForm />;
 
 const NotificationsRoute = () => <Text>Notifications</Text>;
 

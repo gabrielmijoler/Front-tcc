@@ -26,67 +26,20 @@ const TableUser: React.FC = () => {
   // const from = page * numberOfItemsPerPage;
   // const to = Math.min((page + 1) * numberOfItemsPerPage, items.length);
 
-   const [userlist, setUserlist] = useState([]);
+   const [userlist, setUserlist] = useState<any>([]);
 
-  // const getuser = async () => {
-  //   // body:JSON.stringify([])
-  //   try {
-  //     const response = await api.get('/cliente')
-  //     console.log(response);
-  //     const list: any = [];
-  //     if (response.data) {
-  //       response.data.map((item: any) => {
-  //         const { id, name, cpf } = item;
-  //         // list.push(
-  //         // <DataTable.Row key={id}>
-  //         //   <DataTable.Cell >{name}</DataTable.Cell>
-  //         //   <DataTable.Cell>{cpf}</DataTable.Cell>
-  //         //   <DataTable.Cell>EDITAR</DataTable.Cell>
-  //         // </DataTable.Row>);
-  //       });
-  //       setUserlist(list);
-  //     }
-  //   } catch (error) {
-  //     console.log('err', error)
-  //   }
-  // }
-
+  
 
   React.useEffect(() => {
-    // const getuser = async () => {
-    //   // body:JSON.stringify([])
-    //   try {
-    //     const response = await api.get('/cliente')  
-    //     console.log('response',response);
-    //     const list: any = [];
-    //     if (response.data) {
-    //       response.data.map((item: any) => {
-    //         const { id, name, cpf } = item;
-    //         list.push({ label: `${name}-${cpf}`, value: id })
-    //         // <DataTable.Row key={item.id}>
-    //         //   <DataTable.Cell >{item.name}</DataTable.Cell>
-    //         //   <DataTable.Cell>{item.cpf}</DataTable.Cell>
-    //         //   <DataTable.Cell>EDITAR</DataTable.Cell>
-    //         // </DataTable.Row>);
-    //       });
-    //     setUserlist(response);
-    //     }
-    //    } catch (error) {
-    //      console.log('err', error)
-    //    }
-    // }
-
-    const getuser = async () => {
+    const getUser = async () => {
       try {
           const response = await api.get('/cliente')
           const list: any = [];
           if (response.data) {
               response.data.map((item:any) => {
-                const { id, cpf, nome,  } = item;  // desustruração do obejto banco
+                const { nome } = item;  // desustruração do obejto banco
                 list.push({ // pega os dados do objetos do array e cria um novo objeto com os dados q eu quero
-                  id,
-                  cpf,
-                  nome,
+                  nome
                 })
               });
               console.log(list)
@@ -96,14 +49,34 @@ const TableUser: React.FC = () => {
         console.log('err', error)
       }
     }
-    getuser()
+
+    const getFormulario = async () => {
+      try {
+          const response = await api.get('/formulario')
+          const list: any = [];
+          if (response.data) {
+              response.data.map((item:any) => {
+                const { id } = item;  // desustruração do obejto banco
+                list.push({ // pega os dados do objetos do array e cria um novo objeto com os dados q eu quero
+                  id,
+                })
+              });
+              console.log(list)
+              setUserlist(list);
+            }
+      } catch (error) {
+        console.log('err', error)
+      }
+    }
+    getFormulario()
+    getUser()
     // setPage(0);
   }, []);
 
 
   
   const data = {
-    columns: ['NOME', 'CPF', 'SEXO','EDITAR'],
+    columns: ['NOME', 'CPF', 'EDITAR'],
   };
 
   const { columns } = data;
@@ -117,16 +90,16 @@ const TableUser: React.FC = () => {
             ))}
           </DataTable.Header>
             { userlist.length > 0 ? 
-              userlist.map((user: any, idx: number) => ( // aqui mapeio o objeto desajado e mostra os dados
+              userlist.map((user: any, form: any, idx: number) => ( // aqui mapeio o objeto desajado e mostra os dados
                 <DataTable.Row key={idx}>
                   <DataTable.Cell >{user?.nome}</DataTable.Cell>
-                  <DataTable.Cell>{user?.cpf}</DataTable.Cell>
-                  <DataTable.Cell>EDITAR</DataTable.Cell>
+                  <DataTable.Cell>{'a'}</DataTable.Cell>
+                  <DataTable.Cell>{'a'}</DataTable.Cell>
                 </DataTable.Row>
               ))
             : (
               <DataTable.Row >
-                 <DataTable.Title >Taqbela vazia</DataTable.Title>
+                 <DataTable.Title>Tabela vazia</DataTable.Title>
               </DataTable.Row>
             )}
        
